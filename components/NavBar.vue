@@ -63,15 +63,13 @@
           aria-label="close sidebar"
         ></label>
         <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          <li>
-            <span @click="store.isDrawerOpen = false"
-              ><NuxtLink to="/">Home</NuxtLink></span
+          <li v-for="link in links" :key="link.name">
+            <span
+              @click="store.isDrawerOpen = false"
+              class="hover:bg-slate-400 rounded-2xl p-2"
             >
-          </li>
-          <li>
-            <span @click="store.isDrawerOpen = false"
-              ><NuxtLink to="/dashboard">Dashboard</NuxtLink></span
-            >
+              <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
+            </span>
           </li>
         </ul>
       </div>
@@ -79,35 +77,16 @@
   </div>
 </template>
 
-<!-- <script setup lang="tsx">
-import { useMyStore } from "@@/utils/stores/store";
-
-const {
-  isDrawerOpen,
-  weatherCondition,
-  toggleDrawer,
-  isClearDay,
-  isClearNight,
-} = useMyStore();
-</script> -->
-
 <script setup lang="tsx">
 import { useMyStore } from "@@/utils/stores/store";
 
-//Pinia Store import
 const store = useMyStore();
+
+const links = ref([
+  { name: "Home", path: "/" },
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+  { name: "Projects", path: "/projects" },
+]);
 </script>
-
-<!-- <script setup lang="tsx">
-import { ref, computed } from "vue";
-
-const isDrawerOpen = ref(false);
-const weatherCondition = ref(false);
-
-const toggleDrawer = () => {
-  isDrawerOpen.value = !isDrawerOpen.value;
-};
-
-const isClearDay = computed(() => weatherCondition.value === true);
-const isClearNight = computed(() => weatherCondition.value === false);
-</script> -->

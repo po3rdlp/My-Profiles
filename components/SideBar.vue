@@ -53,11 +53,15 @@
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
                   <div>
-                    <ul
-                      class="grid gap-3 p-4 w-80 min-h-full text-base-content"
-                    >
-                      <NuxtLink to="/">Home</NuxtLink>
-                      <NuxtLink to="/dashboard">Dashboard</NuxtLink>
+                    <ul class="grid gap-5 p-3 w-full min-h-full">
+                      <li v-for="link in links" :key="link.name">
+                        <span
+                          @click="store.isDrawerOpen = false"
+                          class="hover:bg-slate-400 rounded-2xl p-2"
+                        >
+                          <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
+                        </span>
+                      </li>
                     </ul>
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
@@ -76,4 +80,14 @@
 
 <script setup lang="ts">
 const store = useMyStore();
+
+import { ref } from "vue";
+
+const links = ref([
+  { name: "Home", path: "/" },
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "About", path: "/about" },
+  { name: "Contact", path: "/contact" },
+  { name: "Projects", path: "/projects" },
+]);
 </script>

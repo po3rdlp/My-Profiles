@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-base-100 shadow-lg">
+    <div class="shadow-lg">
       <div>
         <div class="flex justify-between w-full p-3">
           <div class="flex-1">
@@ -16,27 +16,30 @@
           <div class="flex items-center justify-end gap-3">
             <div>
               <button
-                @click="weatherCondition = !weatherCondition"
+                @click="store.toggleWeatherCondition"
                 :class="{
-                  'animate__animated animate__fadeIn': weatherCondition,
+                  'animate__animated animate__fadeIn': store.weatherCondition,
                 }"
               >
-                <span v-if="isClearNight">
-                  <Icon name="meteocons:clear-night" size="34px" />
+                <span v-if="store.isClearNight">
+                  <Icon
+                    name="material-symbols-light:shield-moon-outline"
+                    size="34px"
+                  />
                 </span>
-                <span v-else-if="isClearDay">
-                  <Icon name="meteocons:clear-day" size="34px" />
+                <span v-else-if="store.isClearDay">
+                  <Icon name="material-symbols-light:sunny" size="34px" />
                 </span>
               </button>
             </div>
             <div>
-              <button @click="toggleDrawer">
-                <span :class="{ hidden: isDrawerOpen === true }">
+              <button @click="store.toggleDrawer">
+                <span :class="{ hidden: store.isDrawerOpen === true }">
                   <Icon name="system-uicons:menu-hamburger" size="34px" />
                 </span>
               </button>
-              <button @click="toggleDrawer">
-                <span :class="{ hidden: isDrawerOpen === false }">
+              <button @click="store.toggleDrawer">
+                <span :class="{ hidden: store.isDrawerOpen === false }">
                   <Icon name="tabler:playlist-x" size="34px" />
                 </span>
               </button>
@@ -50,24 +53,24 @@
         id="my-drawer"
         type="checkbox"
         class="drawer-toggle"
-        v-model="isDrawerOpen"
+        v-model="store.isDrawerOpen"
       />
       <div class="drawer-content"></div>
       <div class="drawer-side">
         <label
+          class="drawer-overlay"
           for="my-drawer"
           aria-label="close sidebar"
-          class="drawer-overlay"
         ></label>
         <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           <li>
-            <span @click="isDrawerOpen = false"
-              ><NuxtLink to="/">/</NuxtLink></span
+            <span @click="store.isDrawerOpen = false"
+              ><NuxtLink to="/">Home</NuxtLink></span
             >
           </li>
           <li>
-            <span @click="isDrawerOpen = false"
-              ><NuxtLink to="/home">home</NuxtLink></span
+            <span @click="store.isDrawerOpen = false"
+              ><NuxtLink to="/dashboard">Dashboard</NuxtLink></span
             >
           </li>
         </ul>
@@ -76,7 +79,26 @@
   </div>
 </template>
 
+<!-- <script setup lang="tsx">
+import { useMyStore } from "@@/utils/stores/store";
+
+const {
+  isDrawerOpen,
+  weatherCondition,
+  toggleDrawer,
+  isClearDay,
+  isClearNight,
+} = useMyStore();
+</script> -->
+
 <script setup lang="tsx">
+import { useMyStore } from "@@/utils/stores/store";
+
+//Pinia Store import
+const store = useMyStore();
+</script>
+
+<!-- <script setup lang="tsx">
 import { ref, computed } from "vue";
 
 const isDrawerOpen = ref(false);
@@ -88,4 +110,4 @@ const toggleDrawer = () => {
 
 const isClearDay = computed(() => weatherCondition.value === true);
 const isClearNight = computed(() => weatherCondition.value === false);
-</script>
+</script> -->

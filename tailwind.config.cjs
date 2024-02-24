@@ -14,6 +14,8 @@ export default {
       sora: ["Sora", "sans-serif"],
     },
   },
-  daisyui: {},
+  daisyui: {
+    themes: ["lofi", "forest"],
+  },
   plugins: [require("daisyui")],
 };

@@ -8,7 +8,7 @@
               <img
                 class="w-12 h-12 rounded-3xl bg-blend-darken"
                 alt="Tailwind CSS Navbar component"
-                src="../img/IMG_20230824_204918_330.jpg"
+                src="../assets/img/IMG_20230824_204918_330.jpg"
               />
               <a class="btn btn-ghost text-xl">Polandos</a>
             </div>

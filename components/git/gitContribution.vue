@@ -114,7 +114,6 @@ const averageContributions = ref<number>(0);
 const data = ref<any>(null);
 const weekContribution = ref<any>(null);
 const color = ref<any[]>([]);
-const contributions = <any[]>[];
 
 const getGitContribution = async () => {
   const headers = {

@@ -8,7 +8,7 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    src="../img/IMG_20230824_204918_330.jpg"
                     class="w-28 h-28 rounded-full"
                   />
                 </div>

@@ -4,11 +4,11 @@
       <div>
         <div class="flex justify-between w-full p-3">
           <div class="flex-1">
-            <div class="flex w-10 h-10 rounded-full">
+            <div class="flex items-center rounded-full">
               <img
-                class="rounded-3xl"
+                class="w-12 h-12 rounded-3xl bg-blend-darken"
                 alt="Tailwind CSS Navbar component"
-                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                src="../img/IMG_20230824_204918_330.jpg"
               />
               <a class="btn btn-ghost text-xl">Polandos</a>
             </div>

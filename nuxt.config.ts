@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   runtimeConfig: {
     public: {
-      GH_TOKEN: process.env.NUXT_PUBLIC_GH_TOKEN,
+      GH_TOKEN: process.env.VERCEL_ENV_NUXT_PUBLIC_GH_TOKEN,
     },
   },
   devtools: { enabled: true },

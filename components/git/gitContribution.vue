@@ -17,81 +17,112 @@
         >@po3rdlp</a
       >
     </div>
-    <!-- CARD -->
-    <div
-      class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-3 lg:gap-4 justify-center items-center mt-5"
-    >
+    <div class="p-1 lg:p-3">
+      <!-- CARD -->
       <div
-        class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+        v-if="data"
+        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-3 lg:gap-4 justify-center items-center mt-5"
       >
-        <div class="p-1 px-3">
-          <label class="text-sm">Total</label>
-          <p v-if="data" class=" ">
-            {{
-              data.user.contributionsCollection.contributionCalendar
-                .totalContributions
-            }}
-          </p>
-        </div>
-      </div>
-      <div
-        class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
-      >
-        <div class="p-1 px-3">
-          <label class="text-sm">This Month</label>
-          <p v-if="totalContributionsThisMonth" class="">
-            {{ totalContributionsThisMonth }}
-          </p>
-        </div>
-      </div>
-      <div
-        class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
-      >
-        <div class="p-1 px-3">
-          <label class="text-sm">Best Day</label>
-          <p v-if="bestDay" class="">
-            {{ bestDay.contributionCount }}
-          </p>
-        </div>
-      </div>
-      <div
-        class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
-      >
-        <div class="p-1 px-3">
-          <label class="text-sm">Best Day</label>
-          <p v-if="data" class="">
-            {{ Math.floor(averageContributions) }}
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!-- WEEKS CONTRIBUTION -->
-    <div
-      class="w-80 md:w-fit lg:w-fit overflow-y-auto mt-5 flex mx-auto gap-1 animate__animated animate__fadeIn"
-    >
-      <div
-        v-for="(week, index) in weekContribution"
-        :key="week.firstDay"
-        class="-space-y-2 relative z-0"
-      >
-        <div class="mt-5">
-          <div v-if="showMonth(week, index)">
-            <span class="absolute top-0 text-xs">
-              {{ getMonthName(week.firstDay) }}
-            </span>
+        <div
+          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+        >
+          <div class="p-1 px-3">
+            <label class="text-sm">Total</label>
+            <p v-if="data" class=" ">
+              {{
+                data.user.contributionsCollection.contributionCalendar
+                  .totalContributions
+              }}
+            </p>
           </div>
         </div>
-        <div v-for="day in week.contributionDays" :key="day.date">
-          <ul>
-            <li
-              :style="{ backgroundColor: day.color }"
-              class="w-[13.9px] h-[13px] rounded-sm inline-block"
-            ></li>
-          </ul>
+        <div
+          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+        >
+          <div class="p-1 px-3">
+            <label class="text-sm">This Month</label>
+            <p v-if="totalContributionsThisMonth" class="">
+              {{ totalContributionsThisMonth }}
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+        >
+          <div class="p-1 px-3">
+            <label class="text-sm">Best Day</label>
+            <p v-if="bestDay" class="">
+              {{ bestDay.contributionCount }}
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+        >
+          <div class="p-1 px-3">
+            <label class="text-sm">Best Day</label>
+            <p v-if="data" class="">
+              {{ Math.floor(averageContributions) }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div v-else class="skeleton w-full h-32 mt-3"></div>
+
+      <!-- WEEKS CONTRIBUTION -->
+      <div
+        v-if="data"
+        class="w-80 md:w-fit lg:w-fit overflow-y-auto mt-5 flex gap-1 animate__animated animate__fadeIn"
+      >
+        <div
+          v-for="(week, index) in weekContribution"
+          :key="week.firstDay"
+          class="-space-y-2 relative z-0"
+        >
+          <div class="mt-5">
+            <div v-if="showMonth(week, index)">
+              <span class="absolute top-0 text-xs">
+                {{ getMonthName(week.firstDay) }}
+              </span>
+            </div>
+          </div>
+          <div v-for="day in week.contributionDays" :key="day.date">
+            <ul>
+              <li
+                :style="{ backgroundColor: day.color }"
+                class="w-[13.9px] h-[13px] rounded-sm inline-block"
+                @mouseenter="
+                  showContributionCount(day.contributionCount, day.date)
+                "
+                @mouseleave="hideContributionCount()"
+              ></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div v-else class="skeleton w-full h-32 mt-3"></div>
+      <div class="flex items-center justify-between gap-1">
+        <div class="flex items-center gap-1 rounded-lg">
+          <p>Less</p>
+          <div v-for="datas in color" :key="datas.hex">
+            <div
+              :style="{ backgroundColor: datas.hex }"
+              class="w-3 h-3 rounded-sm"
+            ></div>
+          </div>
+          <p>More</p>
+        </div>
+        <div
+          v-if="hoveredContributionCount || hoveredContributionCount === 0"
+          class="bg-gray-400 rounded-lg p-1"
+        >
+          <p class="text text-sm text-black">
+            {{ hoveredContributionCount }} Contributions on {{ hoveredDate }}
+          </p>
         </div>
       </div>
     </div>
+    <!-- CARD -->
   </div>
 </template>
 
@@ -114,6 +145,9 @@ const averageContributions = ref<number>(0);
 const data = ref<any>(null);
 const weekContribution = ref<any>(null);
 const color = ref<any[]>([]);
+
+const hoveredDate = ref();
+const hoveredContributionCount = ref(null);
 
 const getGitContribution = async () => {
   const headers = {
@@ -215,6 +249,15 @@ const showMonth = (week: any, index: any) => {
   } else {
     return false;
   }
+};
+
+const showContributionCount = (count: any, date: any) => {
+  hoveredContributionCount.value = count;
+  hoveredDate.value = date;
+};
+
+const hideContributionCount = () => {
+  hoveredContributionCount.value = null;
 };
 
 onMounted(() => {

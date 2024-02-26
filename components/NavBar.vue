@@ -66,7 +66,7 @@
           <li v-for="link in links" :key="link.name">
             <span
               @click="store.isDrawerOpen = false"
-              class="hover:bg-slate-400 rounded-2xl p-2"
+              class="w-full hover:bg-slate-400 rounded-2xl p-2"
             >
               <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
             </span>

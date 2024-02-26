@@ -52,12 +52,17 @@
                     </div>
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
-                  <div>
-                    <ul class="grid gap-5 p-3 w-full min-h-full">
-                      <li v-for="link in links" :key="link.name">
+                  <div class="w-full">
+                    <ul class="grid gap-3">
+                      <li v-for="link in links" :key="link.name" class="w-full">
                         <span
-                          @click="store.isDrawerOpen = false"
-                          class="hover:bg-slate-400 rounded-2xl p-2"
+                          class="grid rounded-2xl p-2"
+                          :class="{
+                            'hover:bg-slate-300 hover:scale-105 duration-200':
+                              store.selectedTheme === 'lofi',
+                            'hover:bg-slate-800 hover:scale-105 duration-200':
+                              store.selectedTheme !== 'lofi',
+                          }"
                         >
                           <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
                         </span>

@@ -14,11 +14,13 @@
     "daisyui": "^4.6.0",
     "nuxt": "^3.9.3",
     "nuxt-icon": "^0.6.8",
+    "nuxt-marquee": "^1.0.3",
     "vue": "^3.4.14",
     "vue-router": "^4.2.5"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.5.1",
+    "animate.css": "^4.1.1",
     "axios": "^1.6.7",
     "pinia": "^2.1.7"
   }

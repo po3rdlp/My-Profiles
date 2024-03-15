@@ -1,5 +1,5 @@
 <template>
-  <div :data-theme="store.selectedTheme" class="h-screen">
+  <div :data-theme="store.selectedTheme" class="min-h-screen">
     <div class="grid md:grid lg:flex justify-center">
       <div
         :class="{

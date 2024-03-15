@@ -21,6 +21,7 @@
           'font-bold text-slate-200': store.selectedTheme !== 'lofi',
         }"
       >
+        <NuxtLoadingIndicator />
         <NuxtLayout>
           <NuxtPage />
         </NuxtLayout>

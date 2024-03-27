@@ -8,7 +8,7 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="../assets/img/IMG_20230824_204918_330.jpg"
+                    src="../assets/img/profile_image.jpg"
                     class="w-28 h-28 rounded-full"
                   />
                 </div>

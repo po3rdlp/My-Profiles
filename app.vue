@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import "animate.css";
-import { useMyStore } from "./utils/stores/store";
 
 const store = useMyStore();
 </script>

@@ -12,8 +12,8 @@ export const useMyStore = defineStore({
   state: (): MyState => ({
     isDrawerOpen: false,
     weatherCondition: false,
-    theme: ["lofi", "forest"],
-    selectedTheme: 'forest',
+    theme: ["lofi", "black"],
+    selectedTheme: "black",
   }),
   getters: {
     isClearDay: state => state.weatherCondition === true,

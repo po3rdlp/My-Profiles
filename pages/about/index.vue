@@ -19,8 +19,16 @@
         in the tech realm.
       </h1>
     </div>
-    <AboutSkillsView />
-    <AboutCarrerView />
-    <AboutEducationView />
+    <div>
+      <AboutSkillsView />
+    </div>
+    <div>
+      <label class="label">Experience</label>
+      <AboutCarrerView />
+    </div>
+    <div>
+      <label class="label">Education</label>
+      <AboutEducationView />
+    </div>
   </div>
 </template>

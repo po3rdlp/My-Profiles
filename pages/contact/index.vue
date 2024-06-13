@@ -48,3 +48,15 @@
     <ContactMessageMe />
   </div>
 </template>
+
+<script setup lang="ts">
+// import FIREBASE_DATABASE from "~/services/firebase/firebase.config";
+// import { collection, getDocs } from "firebase/firestore";
+
+// const db = FIREBASE_DATABASE;
+
+// const querySnapshot = await getDocs(collection(db, "users"));
+// querySnapshot.forEach((doc) => {
+//   console.log(`${doc.id} => ${doc.data()}`);
+// });
+</script>

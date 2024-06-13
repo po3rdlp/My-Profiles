@@ -128,7 +128,7 @@
 
 <script setup lang="ts">
 import { useRuntimeConfig } from "nuxt/app";
-import { apiGit } from "~/services/api.config";
+import { apiGit } from "~/services/api/api.config";
 import getMonthName from "~/utils/date/dateMonth";
 
 const config = useRuntimeConfig();
@@ -264,3 +264,4 @@ onMounted(() => {
   getGitContribution();
 });
 </script>
+~/services/api/api.config

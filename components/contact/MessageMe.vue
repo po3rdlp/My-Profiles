@@ -21,5 +21,8 @@
         ></textarea>
       </div>
     </div>
+    <div class="flex justify-end">
+      <button class="btn btn-primary btn-md rounded-lg">Send</button>
+    </div>
   </div>
 </template>

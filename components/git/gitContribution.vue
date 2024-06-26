@@ -101,7 +101,7 @@
         </div>
       </div>
       <div v-else class="skeleton w-full h-32 mt-3"></div>
-      <div class="flex items-center justify-between gap-1">
+      <div v-if="data" class="flex items-center justify-between gap-1">
         <div class="flex items-center gap-1 rounded-lg">
           <p>Less</p>
           <div v-for="datas in color" :key="datas.hex">

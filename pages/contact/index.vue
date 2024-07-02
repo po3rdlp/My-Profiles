@@ -16,31 +16,34 @@
         >Find Me on Social Media</label
       >
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-3 gap-5">
-        <button
-          class="btn btn-md rounded-lg bg-[#4EB067] hover:bg-[#4EB067] hover:scale-105 duration-400"
+        <a
+          href="https://facebook.com/lpolandos"
+          target="_blank"
+          class="btn rounded-lg bg-[#4EB067] hover:bg-[#4EB067] hover:scale-105 duration-400"
         >
           <Icon name="mdi:email-outline" size="30" /> Email
-        </button>
-        <button
+        </a>
+        <a
+          href="https://www.linkedin.com/in/leonard-polandos-321478249/"
+          target="_blank"
           class="btn btn-md rounded-lg bg-[#0077B5] hover:bg-[#0077B5] hover:scale-105 duration-400"
         >
           <Icon name="mdi:linkedin" size="30" /> Linkedin
-        </button>
-        <button
+        </a>
+        <a
+          href="https://www.instagram.com/leonpolandos/"
+          target="_blank"
           class="btn btn-md rounded-lg bg-[#9F64B6] hover:bg-[#9F64B6] hover:scale-105 duration-400"
         >
           <Icon name="mdi:instagram" size="30" /> Instagram
-        </button>
-        <button
-          class="btn btn-md rounded-lg bg-[#1DA1F2] hover:bg-[#1DA1F2] hover:scale-105 duration-400"
-        >
-          <Icon name="mdi:twitter" size="30" /> Email
-        </button>
-        <button
+        </a>
+        <a
+          href="https://github.com/po3rdlp"
+          target="_blank"
           class="btn btn-md rounded-lg bg-[#79817D] hover:bg-[#79817D] hover:scale-105 duration-400"
         >
           <Icon name="mdi:github" size="30" /> Github
-        </button>
+        </a>
       </div>
     </div>
     <br />

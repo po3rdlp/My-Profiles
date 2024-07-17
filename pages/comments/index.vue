@@ -8,6 +8,9 @@
           Leave whatever you like to say, suggestions, questions or anything!
         </h1>
       </div>
+      <div>
+        <CommentsInputComments />
+      </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
     <div class="w-auto h-[450px] overflow-auto p-2">

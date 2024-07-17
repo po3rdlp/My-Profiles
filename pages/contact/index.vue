@@ -17,7 +17,7 @@
       >
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-3 gap-5">
         <a
-          href="https://facebook.com/lpolandos"
+          href="mailto:leonpolandos53@gmail.com"
           target="_blank"
           class="btn rounded-lg bg-[#4EB067] hover:bg-[#4EB067] hover:scale-105 duration-400"
         >
@@ -51,15 +51,3 @@
     <ContactMessageMe />
   </div>
 </template>
-
-<script setup lang="ts">
-// import FIREBASE_DATABASE from "~/services/firebase/firebase.config";
-// import { collection, getDocs } from "firebase/firestore";
-
-// const db = FIREBASE_DATABASE;
-
-// const querySnapshot = await getDocs(collection(db, "users"));
-// querySnapshot.forEach((doc) => {
-//   console.log(`${doc.id} => ${doc.data()}`);
-// });
-</script>

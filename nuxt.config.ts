@@ -9,9 +9,13 @@ export default defineNuxtConfig({
       FIREBASE_STORAGE_BUCKET: process.env.VERCEL_ENV_NUXT_PUBLIC_STORAGE_BUCKET,
       FIREBASE_MESSAGING_SENDER_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_MESSAGING_SENDER_ID,
       FIREBASE_APP_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_APP_ID,
-      FIREBASE_MEASUREMENT_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_MEASUREMENT_ID
+      FIREBASE_MEASUREMENT_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_MEASUREMENT_ID,
+      FIREBASE_DATABASE_URL : process.env.VERCEL_ENV_NUXT_PUBLIC_DATABASE_URL
     },
   },
+  plugins: [
+    { src: '~/plugins/firebase.ts', mode: 'client' },
+  ],
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee'],
   pinia: {

@@ -13,6 +13,9 @@ export default defineNuxtConfig({
       FIREBASE_DATABASE_URL : process.env.VERCEL_ENV_NUXT_PUBLIC_DATABASE_URL
     },
   },
+  css: [
+    '@/assets/css/main.css',
+  ],
   plugins: [
     { src: '~/plugins/firebase.ts', mode: 'client' },
   ],

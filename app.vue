@@ -3,8 +3,8 @@
     <div class="grid md:grid lg:flex justify-center">
       <div
         :class="{
-          'font-bold text-slate-950': store.selectedTheme === 'lofi',
-          'font-bold text-slate-200': store.selectedTheme !== 'lofi',
+          'font-bold text-slate-950': store.selectedTheme === 'acid',
+          'font-bold text-slate-200': store.selectedTheme !== 'acid',
         }"
       >
         <div class="hidden lg:block max-w-56 h-screen">
@@ -17,8 +17,8 @@
       <div
         class="p-5 md:p-4 lg:p-6 lg:mt-10 font-sora w-screen md:w-screen lg:max-w-screen-lg"
         :class="{
-          'font-bold text-slate-950': store.selectedTheme === 'lofi',
-          'font-bold text-slate-200': store.selectedTheme !== 'lofi',
+          'font-bold text-slate-950': store.selectedTheme === 'acid',
+          'font-bold text-slate-200': store.selectedTheme !== 'acid',
         }"
       >
         <NuxtLoadingIndicator />

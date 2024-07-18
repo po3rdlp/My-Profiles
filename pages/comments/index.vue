@@ -105,4 +105,8 @@ const fetchData = () => {
 onMounted(() => {
   fetchData();
 });
+
+useHead({
+  title: "Comments - Leonard",
+});
 </script>

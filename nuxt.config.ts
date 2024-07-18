@@ -31,7 +31,7 @@ export default defineNuxtConfig({
   //head management
   app : {
     head : {
-      title: 'Profiles',
+      title: 'Leonard - Personal Website',
       script: [
         { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true, defer: true }
       ],

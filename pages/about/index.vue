@@ -32,3 +32,11 @@
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useHead } from "#imports";
+
+useHead({
+  title: "About - Leonard",
+});
+</script>

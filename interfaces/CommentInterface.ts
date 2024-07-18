@@ -1,6 +1,6 @@
 export interface Comments {
     id: number;
-    author: number;
+    author: any;
     timestamp: string;
     content: string;
   }

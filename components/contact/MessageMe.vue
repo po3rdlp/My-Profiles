@@ -22,7 +22,15 @@
       </div>
     </div>
     <div class="flex justify-end">
-      <button class="btn btn-primary btn-md rounded-lg">Send</button>
+      <button class="btn btn-primary btn-md rounded-lg" @click="SendChat">
+        Send
+      </button>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const SendChat = () => {
+  window.alert("FITUR INI MASIH DALAM TAHAP PENGEMBANGAN :)");
+};
+</script>

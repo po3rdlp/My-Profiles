@@ -13,7 +13,7 @@
       </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
-    <div class="w-auto h-[450px] overflow-auto p-2">
+    <div class="w-auto h-[450px] overflow-auto p-0 md:p-2 lg:p-3">
       <div
         v-for="comments in data"
         :key="comments.id"
@@ -21,11 +21,17 @@
       >
         <div class="chat-image avatar">
           <div class="w-10 rounded-full">
-            <img alt="anon" src="https://picsum.photos/id/237/200/300" />
+            <img alt="anon" src="../../assets/img/unknown.png" />
           </div>
         </div>
         <div class="flex">
           <p class="mr-3 text-xl font-bold">{{ comments.author }}</p>
+          <p
+            v-if="comments.author === 'Leonard Petter'"
+            class="mr-3 text-blue-500"
+          >
+            (Author)
+          </p>
           <time class="text-sm opacity-50">{{
             DateString(comments.timestamp)
           }}</time>

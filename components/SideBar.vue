@@ -8,8 +8,8 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="../assets/img/profile_image.jpg"
-                    class="w-28 h-28 rounded-full"
+                    src="../assets/img/ai_images.jpg"
+                    class="w-36 h-36 rounded-full"
                   />
                 </div>
                 <div>
@@ -54,7 +54,7 @@
                         <span
                           class="grid rounded-2xl p-2"
                           :class="[
-                            store.selectedTheme === 'lofi'
+                            store.selectedTheme === 'acid'
                               ? 'hover:bg-transparent'
                               : 'hover:bg-none',
                             'hover:scale-110 duration-200',

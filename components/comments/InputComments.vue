@@ -37,7 +37,11 @@ const name = ref("");
 const message = ref("");
 
 const sendMessage = async () => {
-  if (name.value && message.value) {
+  if (message.value) {
+    if (!name.value) {
+      name.value = `Anonymous${Math.floor(Math.random() * 10000)}`;
+    }
+
     const forbiddenNames = ["Leonard Petter"];
     const isAllCaps = name.value === name.value.toUpperCase();
 
@@ -65,7 +69,7 @@ const sendMessage = async () => {
       console.error("Error sending message:", error);
     }
   } else {
-    window.alert("MOHON MEMASUKAN NAMA DAN PESAN!!!");
+    window.alert("MOHON MEMASUKAN PESAN!!!");
   }
 };
 </script>

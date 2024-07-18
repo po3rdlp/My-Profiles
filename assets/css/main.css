@@ -19,3 +19,15 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+
+.sora {
+    font-family: "Sora", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.checkbox {
+    font-weight: 400;
+  }

@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       link: [
         {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css', crossorigin: 'anonymous', referrerpolicy: 'no-referrer', integrity: 'sha512-siwe/oXMhSjGCwLn+scraPOWrJxHlUgMBMZXdPe2Tnk3I0x3ESCoLz7WZ5NTH6SZrywMY+PB1cjyqJ5jAluCOg=='},
         {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css', crossorigin: 'anonymous', referrerpolicy: 'no-referrer', integrity: 'sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA=='},
-        {rel: 'icon', type: 'image/png', href:"/astronaut.png"},
+        {rel: 'icon', type: 'image/png', href:"/unknown.png"},
         {rel:'preconnect', href:'https://fonts.googleapis.com'},
         {rel:'preconnect', href:'https://fonts.gstatic.com', crossorigin:'anonymous'},
         {href:'https://fonts.googleapis.com/css2?family=Sora:wght@100&display=swap', rel:'stylesheet'},

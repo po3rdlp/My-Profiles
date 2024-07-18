@@ -3,7 +3,7 @@
     <div class="mt-1">
       <div class="grid grid-cols-1 mx-auto">
         <div
-          class="card card-side max-w-lg h-32 border border-slate-800 rounded-xl shadow-sm p-3"
+          class="card card-side max-w-lg h-32 bg-transparent rounded-xl shadow-xl p-3"
         >
           <figure>
             <img

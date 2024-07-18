@@ -13,7 +13,10 @@
       </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
-    <div class="w-auto h-[450px] overflow-auto p-0 md:p-2 lg:p-3">
+    <div
+      class="w-auto h-[450px] overflow-auto p-0 md:p-2 lg:p-3"
+      v-if="!loading"
+    >
       <div
         v-for="comments in data"
         :key="comments.id"
@@ -24,22 +27,34 @@
             <img alt="anon" src="../../assets/img/unknown.png" />
           </div>
         </div>
-        <div class="flex">
-          <p class="mr-3 text-xl font-bold">{{ comments.author }}</p>
+        <div class="grid md:flex lg:flex gap-1 md:gap-0 lg:gap-0">
+          <p class="mr-1 text-sm md:text-lg lg:text-lg font-bold">
+            {{ comments.author }}
+          </p>
           <p
             v-if="comments.author === 'Leonard Petter'"
-            class="mr-3 text-blue-500"
+            class="mr-1 text-blue-500 text-xs"
           >
             (Author)
           </p>
-          <time class="text-sm opacity-50">{{
+          <time class="text-xs opacity-50">{{
             DateString(comments.timestamp)
           }}</time>
         </div>
-        <div class="w-auto chat-bubble-accent rounded-lg p-3">
-          <p class="text-xl">{{ comments.content }}</p>
+        <div class="w-auto rounded-lg p-3 shadow-lg">
+          <p class="text-xs md:text-lg lg:text-xl">{{ comments.content }}</p>
         </div>
       </div>
+    </div>
+    <div v-else class="flex w-full flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <div class="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+        <div class="flex flex-col gap-4">
+          <div class="skeleton h-4 w-20"></div>
+          <div class="skeleton h-4 w-28"></div>
+        </div>
+      </div>
+      <div class="skeleton h-32 w-full"></div>
     </div>
   </div>
 </template>
@@ -50,6 +65,8 @@ import { useNuxtApp } from "nuxt/app";
 import { Database, ref as dbRef, onValue } from "firebase/database";
 import { type Comments } from "../../interfaces/CommentInterface";
 import DateString from "../../utils/time/time";
+
+const store = useMyStore();
 
 const data = ref<Comments[]>([]);
 const { $dbFirebase } = useNuxtApp();

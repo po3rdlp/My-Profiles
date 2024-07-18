@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="flex justify-end">
-      <button class="btn btn-primary btn-md rounded-lg" @click="SendChat">
+      <button class="btn bg-transparent border rounded-lg" @click="SendChat">
         Send
       </button>
     </div>

@@ -12,7 +12,7 @@
     <hr
       class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700 animate__animated animate__fadeInDown"
     />
-    <div class="mt-5 animate__animated animate__fadeInUp">
+    <div class="mt-2 animate__animated animate__fadeInUp">
       <GitContribution />
     </div>
   </div>

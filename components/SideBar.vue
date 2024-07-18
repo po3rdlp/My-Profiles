@@ -16,17 +16,13 @@
                   <label class="label grid text-sm"
                     ><span class="text-sm text-white font-bold"
                       >Leonard Polandos</span
-                    ><span class="text-xs">@Lpolandos</span></label
+                    ></label
                   >
                   <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1">
-                      <p class="text text-xs">Open For Collabs!</p>
-                      <Icon
-                        class="animate-pulse"
-                        name="material-symbols-light:circle"
-                        style="color: #2caf35"
-                        size="10px"
-                      />
+                      <p class="text text-xs font-sora cursor-default">
+                        OPEN FOR COLLABS
+                      </p>
                     </div>
                     <div>
                       <button
@@ -57,21 +53,34 @@
                       <li v-for="link in links" :key="link.name" class="w-full">
                         <span
                           class="grid rounded-2xl p-2"
-                          :class="{
-                            'hover:bg-slate-300 hover:scale-105 duration-200':
-                              store.selectedTheme === 'lofi',
-                            'hover:bg-slate-800 hover:scale-105 duration-200':
-                              store.selectedTheme !== 'lofi',
-                          }"
+                          :class="[
+                            store.selectedTheme === 'lofi'
+                              ? 'hover:bg-transparent'
+                              : 'hover:bg-none',
+                            'hover:scale-110 duration-200',
+                            isActive(link.path)
+                              ? 'text-center scale-125 duration-300 font-extrabold'
+                              : '',
+                          ]"
                         >
-                          <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
+                          <NuxtLink
+                            :to="link.path"
+                            :class="[
+                              store.selectedTheme === 'acid'
+                                ? 'hover:text-black'
+                                : 'hover:text-white',
+                              isActive(link.path) ? 'font-bold' : '',
+                            ]"
+                          >
+                            {{ link.name }}
+                          </NuxtLink>
                         </span>
                       </li>
                     </ul>
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
                   <p class="text-sm text-center font-thin text-gray-400">
-                    © 2023 By Leonard
+                    © 2024 By Leonard
                   </p>
                 </div>
               </div>
@@ -84,9 +93,11 @@
 </template>
 
 <script setup lang="ts">
-const store = useMyStore();
-
 import { ref } from "vue";
+
+const route = useRoute();
+
+const store = useMyStore();
 
 const links = ref([
   { name: "Home", path: "/" },
@@ -96,4 +107,8 @@ const links = ref([
   // { name: "Projects", path: "/projects" },
   { name: "Comments", path: "/comments" },
 ]);
+
+const isActive = (path: string) => {
+  return route.path === path;
+};
 </script>

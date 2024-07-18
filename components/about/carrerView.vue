@@ -2,7 +2,7 @@
   <div class="mt-1">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
       <div
-        class="card card-side max-w-lg h-32 border border-slate-800 rounded-xl shadow-sm p-3"
+        class="card card-side max-w-lg h-32 bg-transparent rounded-xl shadow-xl p-3"
       >
         <figure>
           <img
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div
-        class="card card-side max-w-lg h-32 border border-slate-800 rounded-xl shadow-sm p-3"
+        class="card card-side max-w-lg h-32 bg-transparent rounded-xl shadow-xl p-3"
       >
         <figure>
           <img
@@ -38,7 +38,7 @@
         </div>
       </div>
       <div
-        class="card card-side max-w-lg h-32 border border-slate-800 rounded-xl shadow-sm p-3"
+        class="card card-side max-w-lg h-32 bg-transparent rounded-xl shadow-xl p-3"
       >
         <figure>
           <img

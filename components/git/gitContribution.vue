@@ -21,7 +21,7 @@
       <!-- CARD -->
       <div
         v-if="data"
-        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-3 lg:gap-4 justify-center items-center mt-5"
+        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-3 lg:gap-4 justify-center items-center mt-3"
       >
         <div
           class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"

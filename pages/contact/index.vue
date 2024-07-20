@@ -15,7 +15,9 @@
       <label class="text text-lg font-bold capitalize"
         >Find Me on Social Media</label
       >
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 mt-3 gap-5">
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 gap-3 md:gap-4 lg:gap-5"
+      >
         <a
           href="mailto:leonpolandos53@gmail.com"
           target="_blank"
@@ -47,7 +49,7 @@
       </div>
     </div>
     <br />
-    <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
+    <hr class="h-px my-1 bg-gray-200 border-0 dark:bg-gray-700" />
     <ContactMessageMe />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div :data-theme="store.selectedTheme" class="min-h-screen">
+  <div :data-theme="store.selectedTheme" class="min-h-dvh">
     <div class="grid md:grid lg:flex justify-center">
       <div
         :class="{
@@ -7,7 +7,7 @@
           'font-bold text-slate-200': store.selectedTheme !== 'acid',
         }"
       >
-        <div class="hidden lg:block max-w-56 h-screen">
+        <div class="hidden lg:block max-w-56 h-full">
           <SideBar />
         </div>
         <div class="lg:hidden">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div
-        class="p-3 md:p-4 lg:p-6 lg:mt-10 font-sora w-screen md:w-screen lg:max-w-screen-lg"
+        class="p-3 md:p-4 lg:p-6 lg:mt-10 font-sora max-w-sm md:max-w-screen-md lg:max-w-screen-md"
         :class="{
           'font-bold text-slate-950': store.selectedTheme === 'acid',
           'font-bold text-slate-200': store.selectedTheme !== 'acid',

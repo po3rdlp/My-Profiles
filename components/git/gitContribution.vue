@@ -24,7 +24,7 @@
         class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-3 md:gap-3 lg:gap-4 justify-center items-center mt-3"
       >
         <div
-          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+          class="w-full flex items-center md:max-w-screen-md lg:max-w-screen-sm h-20 shadow-sm border border-neutral-700 rounded-2xl"
         >
           <div class="p-1 px-3">
             <label class="text-sm">Total</label>
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div
-          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+          class="w-full flex items-center md:max-w-screen-md lg:max-w-screen-sm h-20 shadow-sm border border-neutral-700 rounded-2xl"
         >
           <div class="p-1 px-3">
             <label class="text-sm">This Month</label>
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div
-          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+          class="w-full flex items-center md:max-w-screen-md lg:max-w-screen-sm h-20 shadow-sm border border-neutral-700 rounded-2xl"
         >
           <div class="p-1 px-3">
             <label class="text-sm">Best Day</label>
@@ -57,7 +57,7 @@
           </div>
         </div>
         <div
-          class="w-full flex items-center md:w-48 lg:w-56 h-20 shadow-sm border border-neutral-700 rounded-2xl"
+          class="w-full flex items-center md:max-w-screen-md lg:max-w-screen-sm h-20 shadow-sm border border-neutral-700 rounded-2xl"
         >
           <div class="p-1 px-3">
             <label class="text-sm">Best Day</label>
@@ -67,19 +67,22 @@
           </div>
         </div>
       </div>
-      <div v-else class="skeleton w-full h-32 mt-3"></div>
+      <div
+        v-else
+        class="skeleton w-full md:w-[200px] lg:w-[600px] h-32 mt-3"
+      ></div>
 
       <!-- WEEKS CONTRIBUTION -->
       <div
         v-if="data"
-        class="w-80 md:w-fit lg:w-fit overflow-y-auto mt-5 flex gap-1 animate__animated animate__fadeIn"
+        class="w-full overflow-y-auto mt-5 flex gap-1 animate__animated animate__fadeIn"
       >
         <div
           v-for="(week, index) in weekContribution"
           :key="week.firstDay"
           class="-space-y-2 relative z-0"
         >
-          <div class="mt-5">
+          <div class="mt-4">
             <div v-if="showMonth(week, index)">
               <span class="absolute top-0 text-xs">
                 {{ getMonthName(week.firstDay) }}
@@ -264,4 +267,3 @@ onMounted(() => {
   getGitContribution();
 });
 </script>
-~/services/api/api.config

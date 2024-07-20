@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-5">
+  <div class="mb-3">
     <div>
       <NuxtMarquee :autoFill="true" class="p-1">
         <div
@@ -45,7 +45,7 @@
       </NuxtMarquee>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-3">
       <NuxtMarquee :direction="'right'" :autoFill="true" class="p-2">
         <div
           class="flex items-center gap-2 mr-3 rounded-full py-2 px-5 w-max shadow-sm"

@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3">
     <label class="label"> Or Send Me A Message !!</label>
-    <div class="grid gap-5 grid-cols-1">
+    <div class="grid gap-3 grid-cols-1">
       <div class="grid grid-cols-2 gap-5">
         <input
           type="text"

@@ -3,7 +3,7 @@
     <div class="mt-1">
       <div class="grid grid-cols-1 mx-auto">
         <div
-          class="card card-side max-w-lg h-32 bg-transparent rounded-xl shadow-xl p-3"
+          class="card card-side max-w-screen-sm h-full bg-transparent rounded-xl shadow-xl p"
         >
           <figure>
             <img
@@ -13,12 +13,12 @@
             />
           </figure>
           <div class="">
-            <h2 class="text text-lg">UNIVERSITAS KLABAT</h2>
+            <h2 class="text text-md">UNIVERSITAS KLABAT</h2>
             <div class="grid">
-              <span class="label label-text-alt"
+              <span class="label text-xs"
                 >Bachelor's degree • INFORMATICS ENGINEERING, (S.KOM)</span
               >
-              <span>2017-2022</span>
+              <span class="text-xs">2017-2022</span>
             </div>
           </div>
         </div>

@@ -54,19 +54,20 @@
                         <span
                           class="grid rounded-2xl p-2"
                           :class="[
-                            store.selectedTheme === 'acid'
-                              ? 'hover:bg-transparent'
-                              : 'hover:bg-none',
                             'hover:scale-110 duration-200',
                             isActive(link.path)
-                              ? 'text-center scale-125 duration-300 font-extrabold'
+                              ? `text-center scale-125 duration-300 font-extrabold ${
+                                  store.selectedTheme !== `${store.theme[0]}`
+                                    ? 'text-blue-300 hover:text-blue-300'
+                                    : 'text-blue-500 hover:text-blue-500'
+                                }`
                               : '',
                           ]"
                         >
                           <NuxtLink
                             :to="link.path"
                             :class="[
-                              store.selectedTheme === 'acid'
+                              store.selectedTheme === `${store.theme[0]}`
                                 ? 'hover:text-black'
                                 : 'hover:text-white',
                               isActive(link.path) ? 'font-bold' : '',

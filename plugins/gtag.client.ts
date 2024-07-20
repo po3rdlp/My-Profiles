@@ -1,6 +1,8 @@
 // plugins/gtag.client.ts
 export default defineNuxtPlugin((nuxtApp) => {
-    const { GTAG_ID } = useRuntimeConfig().public;
+    const config = useRuntimeConfig();
+
+    const gtagId = config.public.GTAG_ID
   
 
     window.dataLayer = window.dataLayer || [];
@@ -10,13 +12,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   
     gtag("js", new Date());
-    gtag("config", GTAG_ID);
+    gtag("config", gtagId);
   
     // Inject the gtag script
     useHead({
       script: [
         {
-          src: `https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`,
+          src: `https://www.googletagmanager.com/gtag/js?id=${gtagId}`,
           async: true,
         },
       ],

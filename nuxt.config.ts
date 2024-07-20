@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   ],
   plugins: [
     { src: '~/plugins/firebase.ts', mode: 'client' },
+    { src: '~/plugins/gtag.client.ts', mode: 'client' },
   ],
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee'],

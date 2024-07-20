@@ -88,7 +88,7 @@ const fetchData = () => {
           ...fetchedData[key],
         }));
         data.value = commentsArray;
-        console.log("data", data.value);
+        console.info("SUCCESS TAKING DATA.");
       } else {
         data.value = [];
         console.log(data.value);

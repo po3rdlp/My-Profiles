@@ -22,7 +22,6 @@ export const useMyStore = defineStore({
   actions: {
     toggleDrawer() {
       this.isDrawerOpen = !this.isDrawerOpen;
-      console.log('hello world', this.isDrawerOpen)
     },
     toggleWeatherCondition() {
       this.weatherCondition = !this.weatherCondition;

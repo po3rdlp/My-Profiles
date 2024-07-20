@@ -11,7 +11,6 @@ export default defineNuxtConfig({
       FIREBASE_APP_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_APP_ID,
       FIREBASE_MEASUREMENT_ID: process.env.VERCEL_ENV_NUXT_PUBLIC_MEASUREMENT_ID,
       FIREBASE_DATABASE_URL : process.env.VERCEL_ENV_NUXT_PUBLIC_DATABASE_URL,
-      GTAG_ID : process.env.VERCEL_ENV_NUXT_PUBLIC_GTAG_ID
     },
   },
   css: [
@@ -19,7 +18,6 @@ export default defineNuxtConfig({
   ],
   plugins: [
     { src: '~/plugins/firebase.ts', mode: 'client' },
-    { src: '~/plugins/gtag.client.ts', mode: 'client' },
   ],
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee'],

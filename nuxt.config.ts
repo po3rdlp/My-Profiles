@@ -33,7 +33,17 @@ export default defineNuxtConfig({
     head : {
       title: 'Leonard - Personal Website',
       script: [
-        { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true, defer: true }
+        { src: 'https://challenges.cloudflare.com/turnstile/v0/api.js', async: true, defer: true },
+        { src: '"https://www.googletagmanager.com/gtag/js?id=G-GE9XNDR5SN"', async: true },
+        {
+          innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-GE9XNDR5SN');
+          `,
+          type: 'text/javascript',
+        }
       ],
       link: [
         {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.1/css/bootstrap.min.css', crossorigin: 'anonymous', referrerpolicy: 'no-referrer', integrity: 'sha512-siwe/oXMhSjGCwLn+scraPOWrJxHlUgMBMZXdPe2Tnk3I0x3ESCoLz7WZ5NTH6SZrywMY+PB1cjyqJ5jAluCOg=='},

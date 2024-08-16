@@ -9,7 +9,7 @@
         </h1>
       </div>
       <div>
-        <CommentsInputComments />
+        <LayoutsCommentsInputComments />
       </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
@@ -65,8 +65,6 @@ import { useNuxtApp } from "nuxt/app";
 import { Database, ref as dbRef, onValue } from "firebase/database";
 import { type Comments } from "../../interfaces/CommentInterface";
 import DateString from "../../utils/time/time";
-
-const store = useMyStore();
 
 const data = ref<Comments[]>([]);
 const { $dbFirebase } = useNuxtApp();

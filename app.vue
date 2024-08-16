@@ -8,10 +8,10 @@
         }"
       >
         <div class="hidden lg:block max-w-56 h-full">
-          <SideBar />
+          <LazyLayoutsNavigationSideBar />
         </div>
         <div class="lg:hidden">
-          <NavBar />
+          <LazyLayoutsNavigationNavBar />
         </div>
       </div>
       <div

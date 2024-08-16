@@ -8,7 +8,7 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="../assets/img/ai_images.jpg"
+                    src="../../../assets/img/ai_images.jpg"
                     class="w-36 h-36 rounded-full"
                   />
                 </div>
@@ -54,6 +54,9 @@
                         <span
                           class="grid rounded-2xl p-2"
                           :class="[
+                            store.selectedTheme === `${store.theme[0]}`
+                              ? 'hover:bg-transparent'
+                              : 'hover:bg-none',
                             'hover:scale-110 duration-200',
                             isActive(link.path)
                               ? `text-center scale-125 duration-300 font-extrabold ${
@@ -107,6 +110,7 @@ const links = ref([
   { name: "Contact", path: "/contact" },
   // { name: "Projects", path: "/projects" },
   { name: "Comments", path: "/comments" },
+  { name: "Playground", path: "/playgrounds" },
 ]);
 
 const isActive = (path: string) => {

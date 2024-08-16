@@ -9,7 +9,7 @@
         <figure>
           <img
             class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-            src="../../assets/img/samrat_logo.png"
+            src="../../../assets/img/samrat_logo.png"
             alt="rsSamrat"
           />
         </figure>
@@ -27,7 +27,7 @@
         <figure>
           <img
             class="w-16 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-            src="../../assets/img/kirana_logo.png"
+            src="../../../assets/img/kirana_logo.png"
             alt="Movie"
           />
         </figure>
@@ -35,7 +35,7 @@
           <h2 class="text text-md">RSIA KIRANA MANADO</h2>
           <div class="grid">
             <span class="label text-xs">Freelance • Manado</span>
-            <span class="text-xs">3 Months (June - Sept) 2024</span>
+            <span class="text-xs">3 Months (June - Sept) 2023</span>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <figure>
           <img
             class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-28 mr-2 object-fill"
-            src="../../assets/img/hksp_logo.png"
+            src="../../../assets/img/hksp_logo.png"
             alt="Movie"
           />
         </figure>
@@ -53,7 +53,7 @@
           <h2 class="text text-md">HASIL KARYA SENTRA PANGAN</h2>
           <div class="grid">
             <span class="label text-xs">Freelance • Manado</span>
-            <span class="text-xs">3 Months (Augst - Dec) 2024</span>
+            <span class="text-xs">3 Months (Augst - Dec) 2023</span>
           </div>
         </div>
       </div>

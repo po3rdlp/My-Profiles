@@ -22,9 +22,12 @@
       </div>
     </div>
     <div class="flex justify-end">
-      <button class="btn bg-transparent border rounded-lg" @click="SendChat">
-        Send
-      </button>
+      <AtomsButtonComponent
+        label="Send"
+        variant="primary"
+        :disabled="false"
+        @click="SendChat"
+      />
     </div>
   </div>
 </template>

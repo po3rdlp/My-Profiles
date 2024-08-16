@@ -16,7 +16,12 @@
           placeholder="Message*"
         ></textarea>
         <div class="flex justify-end">
-          <button class="btn rounded-lg" @click="sendMessage">Send</button>
+          <AtomsButtonComponent
+            label="Send"
+            variant="primary"
+            :disabled="false"
+            @click="sendMessage"
+          />
         </div>
       </div>
     </div>

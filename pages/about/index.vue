@@ -20,15 +20,15 @@
       </h1>
     </div>
     <div>
-      <AboutSkillsView />
+      <LayoutsAboutSkillsView />
     </div>
     <div>
       <label class="label">Experience</label>
-      <AboutCarrerView />
+      <LayoutsAboutCarrerView />
     </div>
     <div>
       <label class="label">Education</label>
-      <AboutEducationView />
+      <LayoutsAboutEducationView />
     </div>
   </div>
 </template>

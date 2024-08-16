@@ -8,7 +8,7 @@
           <figure>
             <img
               class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-              src="../../assets/img/unklab_logo.png"
+              src="../../../assets/img/unklab_logo.png"
               alt="Movie"
             />
           </figure>

@@ -8,7 +8,7 @@
     :disabled="disabled"
     @click="handleClick"
   >
-    {{ label }}
+    <slot>{{ label }}</slot>
   </button>
 </template>
 

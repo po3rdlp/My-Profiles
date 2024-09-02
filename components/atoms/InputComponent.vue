@@ -6,7 +6,9 @@
       :class="{ 'border-red-500': err }"
       v-model="inputValue"
       :type="type"
+      :disabled="disabled"
     />
+    <p v-if="err" class="text-red-500 text-sm mt-1">{{ message }}</p>
   </div>
 </template>
 

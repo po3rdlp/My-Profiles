@@ -2,7 +2,7 @@
   <form @submit.prevent="handleSubmit">
     <slot></slot>
 
-    <div v-if="errMessage">
+    <div v-if="setErr">
       <p>{{ errMessage }}</p>
     </div>
 
@@ -10,7 +10,7 @@
       label="Create"
       variant="primary"
       :disabled="false"
-      @click="handleSubmit"
+      @click="undefined"
     />
   </form>
 </template>
@@ -33,6 +33,7 @@ const props = defineProps({
 
 const isSubmitting = ref<boolean>();
 const errMessage = ref<string>();
+const setErr = ref<boolean>(false);
 const formState = reactive({ ...props.intialValues });
 
 watch(
@@ -49,6 +50,7 @@ const handleSubmit = async () => {
   try {
     await props.onSubmit({ ...formState });
   } catch (err) {
+    setErr.value = true;
     errMessage.value = `${err}` || "An Error Occured";
   } finally {
     isSubmitting.value = false;

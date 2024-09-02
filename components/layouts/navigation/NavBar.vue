@@ -87,5 +87,6 @@ const links = ref([
   { name: "Contact", path: "/contact" },
   // { name: "Projects", path: "/projects" },
   { name: "Comments", path: "/comments" },
+  { name: "Playground", path: "/playgrounds" },
 ]);
 </script>

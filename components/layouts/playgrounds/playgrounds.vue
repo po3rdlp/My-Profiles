@@ -8,7 +8,9 @@
             :intial-values="formValues"
             :on-submit="handleFormSubmit"
           >
-            <div class="flex gap-3 mb-2">
+            <div
+              class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3 mb-2"
+            >
               <AtomsInputComponent
                 placeholder="First Name"
                 :disabled="false"

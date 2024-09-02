@@ -6,5 +6,5 @@ export const apiGit = axios.create({
 })
 
 export const apiSC = axios.create({
-    baseURL: 'http://localhost:3500/'
+    baseURL: 'https://6c09-36-85-221-72.ngrok-free.app/'
 })

@@ -37,10 +37,7 @@
           </MoleculesBaseForm>
         </div>
       </div>
-      <AtomsLabelComponent
-        :text="users.length.toString() + ' users'"
-        textSize="large"
-      />
+      <label class="label">List Users</label>
       <div class="h-96 overflow-auto mt-3">
         <table class="table">
           <thead>

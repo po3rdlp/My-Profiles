@@ -6,5 +6,5 @@ export const apiGit = axios.create({
 })
 
 export const apiSC = axios.create({
-    baseURL: 'https://6c09-36-85-221-72.ngrok-free.app/'
+    baseURL: 'https://a187-110-139-227-45.ngrok-free.app/'
 })

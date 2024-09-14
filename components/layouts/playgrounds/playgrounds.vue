@@ -189,10 +189,7 @@ const handleFormSubmit = async (formState: FormValues) => {
 const getData = async () => {
   isLoading.value = true;
   try {
-    const response = await apiSC.get("/dev/v1/users", {
-      headers: {
-        "ngrok-skip-browser-warning": "skip-browser-warning",
-      },
+    const response = await apiSC.get("/dev/v1/users"
     });
 
     console.log(response.data.user);

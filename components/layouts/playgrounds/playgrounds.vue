@@ -157,17 +157,11 @@ const handleFormSubmit = async (formState: FormValues) => {
       !errors.value.lastNameError &&
       !errors.value.ageError
     ) {
-      const response = await apiSC.get("dev/v1", {
-        headers: {
-          "ngrok-skip-browser-warning": "skip-browser-warning",
-        },
+      const response = await apiSC.get("dev/v1"
       });
       if (response.data.statusCode === 202) {
         try {
-          const sendDataUsers = await apiSC.post("/dev/v1/users", formState, {
-            headers: {
-              "ngrok-skip-browser-warning": "skip-browser-warning",
-            },
+          const sendDataUsers = await apiSC.post("/dev/v1/users", formState
           });
           console.log(sendDataUsers.data);
 

@@ -157,18 +157,11 @@ const handleFormSubmit = async (formState: FormValues) => {
       !errors.value.lastNameError &&
       !errors.value.ageError
     ) {
-      const response = await apiSC.get("dev/v1", {
-        headers: {
-          "ngrok-skip-browser-warning": "skip-browser-warning",
-        },
-      });
+      const response = await apiSC.get("dev/v1");
+      console.log("response if success", response.data)
       if (response.data.statusCode === 202) {
         try {
-          const sendDataUsers = await apiSC.post("/dev/v1/users", formState, {
-            headers: {
-              "ngrok-skip-browser-warning": "skip-browser-warning",
-            },
-          });
+          const sendDataUsers = await apiSC.post("/dev/v1/users", formState);
           console.log(sendDataUsers.data);
 
           formValues.value.firstName = "";
@@ -189,11 +182,7 @@ const handleFormSubmit = async (formState: FormValues) => {
 const getData = async () => {
   isLoading.value = true;
   try {
-    const response = await apiSC.get("/dev/v1/users", {
-      headers: {
-        "ngrok-skip-browser-warning": "skip-browser-warning",
-      },
-    });
+    const response = await apiSC.get("/dev/v1/users");
 
     console.log(response.data.user);
     users.value = response.data.user;
@@ -210,11 +199,7 @@ const removeUsers = async (id: number) => {
   if (validation) {
     try {
       console.log("id users", id);
-      const response = await apiSC.delete(`/dev/v1/users/${id}`, {
-        headers: {
-          "ngrok-skip-browser-warning": "skip-browser-warning",
-        },
-      });
+      const response = await apiSC.delete(`/dev/v1/users/${id}`);
 
       console.log(response.data.message);
       location.reload();

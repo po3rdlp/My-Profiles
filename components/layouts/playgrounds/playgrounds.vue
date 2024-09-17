@@ -37,10 +37,13 @@
               />
             </div>
           </MoleculesBaseForm>
+          <p v-if="isError" class="text-red-500 mt-2 text-lg animate-pulse">
+            {{ isError }}
+          </p>
         </div>
       </div>
-      <label class="label">List Users</label>
-      <div class="h-96 overflow-auto mt-3">
+      <label class="label mt-2">List Users</label>
+      <div class="h-80 overflow-auto mt-1">
         <table class="table">
           <thead>
             <tr>
@@ -50,7 +53,12 @@
               <th>Action</th>
             </tr>
           </thead>
-          <tbody class="text-white">
+          <tbody
+            :class="{
+              'font-bold text-slate-950': store.selectedTheme === 'acid',
+              'font-bold text-slate-200': store.selectedTheme !== 'acid',
+            }"
+          >
             <tr v-for="user in users" :key="user.id">
               <td>{{ user.firstName }}</td>
               <td>{{ user.lastName }}</td>
@@ -79,6 +87,8 @@
 <script setup lang="tsx">
 import { apiSC } from "~/services/api/api.config";
 
+const store = useMyStore();
+
 interface FormValues {
   firstName: string;
   lastName: string;
@@ -96,6 +106,7 @@ let users = ref<
 >([]);
 
 let isLoading = ref<boolean>(false);
+let isError = ref<string | undefined>(undefined);
 
 let errors = ref<{
   firstNameError: boolean;
@@ -158,7 +169,7 @@ const handleFormSubmit = async (formState: FormValues) => {
       !errors.value.ageError
     ) {
       const response = await apiSC.get("dev/v1");
-      console.log("response if success", response.data)
+      console.log("response if success", response.data);
       if (response.data.statusCode === 202) {
         try {
           const sendDataUsers = await apiSC.post("/dev/v1/users", formState);
@@ -167,15 +178,18 @@ const handleFormSubmit = async (formState: FormValues) => {
           formValues.value.firstName = "";
           formValues.value.lastName = "";
           formValues.value.age = 0;
+          location.reload();
         } catch (err: any) {
           if (err.response) {
             console.log("Error :\n", err.response.data.message);
+            isError.value = err.response.data.message;
           }
         }
       }
     }
-  } catch (error) {
+  } catch (error: any) {
     console.log("Error On Validation, Please Check");
+    isError.value = error.response.data.message;
   }
 };
 

@@ -5,6 +5,10 @@ export const apiGit = axios.create({
     baseURL: 'https://api.github.com/'
 })
 
+// export const apiSC = axios.create({
+//     baseURL: 'http://34.71.191.254:3500/'
+// })
+
 export const apiSC = axios.create({
-    baseURL: 'http://34.71.191.254:3500/'
+    baseURL: 'https://petterl.xyz/simple-connect/'
 })

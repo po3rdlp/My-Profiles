@@ -169,7 +169,6 @@ const handleFormSubmit = async (formState: FormValues) => {
       !errors.value.ageError
     ) {
       const response = await apiSC.get("dev/v1");
-      console.log("response if success", response.data);
       if (response.data.statusCode === 202) {
         try {
           const sendDataUsers = await apiSC.post("/dev/v1/users", formState);
@@ -197,8 +196,6 @@ const getData = async () => {
   isLoading.value = true;
   try {
     const response = await apiSC.get("/dev/v1/users");
-
-    console.log(response.data.user);
     users.value = response.data.user;
     isLoading.value = false;
   } catch (err: any) {

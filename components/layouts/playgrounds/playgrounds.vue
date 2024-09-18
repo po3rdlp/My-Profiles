@@ -12,6 +12,14 @@
               class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3 mb-2"
             >
               <AtomsInputComponent
+                placeholder="Username"
+                :disabled="false"
+                :err="errors.userNameError"
+                type="text"
+                :message="messages.userNameMessage"
+                v-model="formValues.userName"
+              />
+              <AtomsInputComponent
                 placeholder="First Name"
                 :disabled="false"
                 :err="errors.firstNameError"
@@ -26,6 +34,14 @@
                 type="text"
                 :message="messages.lastNameMessage"
                 v-model="formValues.lastName"
+              />
+              <AtomsInputComponent
+                placeholder="Password"
+                :disabled="false"
+                :err="errors.passwordError"
+                type="password"
+                :message="messages.passwordMessage"
+                v-model="formValues.password"
               />
               <AtomsInputComponent
                 placeholder="Age"
@@ -47,9 +63,11 @@
         <table class="table">
           <thead>
             <tr>
+              <th>UserName</th>
               <th>FirstName</th>
               <th>LastName</th>
               <th>Age</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -60,9 +78,11 @@
             }"
           >
             <tr v-for="user in users" :key="user.id">
+              <td>{{ user.userName }}</td>
               <td>{{ user.firstName }}</td>
               <td>{{ user.lastName }}</td>
               <td>{{ user.age }}</td>
+              <td>{{ user.role }}</td>
               <td>
                 <AtomsButtonComponent
                   label=""
@@ -90,65 +110,97 @@ import { apiSC } from "~/services/api/api.config";
 const store = useMyStore();
 
 interface FormValues {
+  userName: string;
   firstName: string;
   lastName: string;
   age: number;
+  password: string;
+  role: string;
 }
 
 const formValues = ref<FormValues>({
+  userName: "",
   firstName: "",
   lastName: "",
   age: 0,
+  password: "",
+  role: "user",
 });
 
 let users = ref<
-  Array<{ id: number; firstName: string; lastName: string; age: number }>
+  Array<{
+    userName: string;
+    id: number;
+    firstName: string;
+    lastName: string;
+    age: number;
+    password: string;
+    role: string;
+  }>
 >([]);
 
 let isLoading = ref<boolean>(false);
 let isError = ref<string | undefined>(undefined);
 
 let errors = ref<{
+  userNameError: boolean;
   firstNameError: boolean;
   lastNameError: boolean;
   ageError: boolean;
+  passwordError: boolean;
+  roleError: boolean;
 }>({
+  userNameError: false,
   firstNameError: false,
   lastNameError: false,
   ageError: false,
+  passwordError: false,
+  roleError: false,
 });
 
 let messages = ref<{
+  userNameMessage: string;
   firstNameMessage: string;
   lastNameMessage: string;
   ageMessage: string;
+  passwordMessage: string;
+  roleMessage: string;
 }>({
+  userNameMessage: "",
   firstNameMessage: "",
   lastNameMessage: "",
   ageMessage: "",
+  passwordMessage: "",
+  roleMessage: "",
 });
 
 const handleFormSubmit = async (formState: FormValues) => {
   try {
     errors.value = {
+      userNameError: false,
       firstNameError: false,
       lastNameError: false,
       ageError: false,
+      passwordError: false,
+      roleError: false,
     };
     messages.value = {
+      userNameMessage: "",
       firstNameMessage: "",
       lastNameMessage: "",
       ageMessage: "",
+      passwordMessage: "",
+      roleMessage: "",
     };
 
-    if (!formState.firstName || formState.firstName.length <= 3) {
+    if (!formState.firstName || formState.firstName.length < 3) {
       messages.value.firstNameMessage =
         "First Name must contain at least three words.";
       errors.value.firstNameError = true;
       console.log("Validating First Name", errors.value.firstNameError);
     }
 
-    if (!formState.lastName || formState.lastName.length <= 3) {
+    if (!formState.lastName || formState.lastName.length < 3) {
       messages.value.lastNameMessage =
         "Last Name must contain at least three words.";
       errors.value.lastNameError = true;
@@ -163,10 +215,24 @@ const handleFormSubmit = async (formState: FormValues) => {
       console.log("Validating Age", errors.value.ageError);
     }
 
+    if (!formState.userName || formState.userName.length < 3) {
+      messages.value.userNameMessage =
+        "Username must contain at least three words.";
+      errors.value.userNameError = true;
+    }
+
+    if (!formState.password || formState.password.length < 6) {
+      messages.value.passwordMessage =
+        "Password must contain at least eight characters.";
+      errors.value.passwordError = true;
+    }
+
     if (
       !errors.value.firstNameError &&
       !errors.value.lastNameError &&
-      !errors.value.ageError
+      !errors.value.ageError &&
+      !errors.value.userNameError &&
+      !errors.value.passwordError
     ) {
       const response = await apiSC.get("dev/v1");
       if (response.data.statusCode === 202) {

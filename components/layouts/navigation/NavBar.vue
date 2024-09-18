@@ -21,13 +21,13 @@
                   'animate__animated animate__fadeIn': store.weatherCondition,
                 }"
               >
-                <span v-if="store.isClearNight">
+                <span v-if="store.selectedTheme === 'night'">
                   <Icon
                     name="material-symbols-light:shield-moon-outline"
                     size="34px"
                   />
                 </span>
-                <span v-else-if="store.isClearDay">
+                <span v-else-if="store.selectedTheme === 'acid'">
                   <Icon name="material-symbols-light:sunny" size="34px" />
                 </span>
               </button>
@@ -89,4 +89,8 @@ const links = ref([
   { name: "Comments", path: "/comments" },
   { name: "Playground", path: "/playgrounds" },
 ]);
+
+onMounted(() => {
+  store.initialize();
+});
 </script>

@@ -32,13 +32,13 @@
                             store.weatherCondition,
                         }"
                       >
-                        <span v-if="store.isClearNight">
+                        <span v-if="store.selectedTheme === 'night'">
                           <Icon
                             name="material-symbols-light:shield-moon-outline"
                             size="34px"
                           />
                         </span>
-                        <span v-else-if="store.isClearDay">
+                        <span v-else-if="store.selectedTheme === 'acid'">
                           <Icon
                             name="material-symbols-light:sunny"
                             size="34px"
@@ -116,4 +116,8 @@ const links = ref([
 const isActive = (path: string) => {
   return route.path === path;
 };
+
+onMounted(() => {
+  store.initialize();
+});
 </script>

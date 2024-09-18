@@ -34,4 +34,8 @@
 import "animate.css";
 
 const store = useMyStore();
+
+onMounted(() => {
+  store.initialize();
+});
 </script>

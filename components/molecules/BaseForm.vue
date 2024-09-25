@@ -7,9 +7,9 @@
     </div>
 
     <AtomsButtonComponent
-      label="Create"
+      :label="submitButtonText"
       variant="primary"
-      :disabled="false"
+      :disabled="submitButtonBoolean"
       @click="undefined"
     />
   </form>
@@ -20,6 +20,10 @@ const props = defineProps({
   submitButtonText: {
     type: String,
     default: "Submit",
+  },
+  submitButtonBoolean: {
+    type: Boolean,
+    default: false,
   },
   intialValues: {
     type: Object,

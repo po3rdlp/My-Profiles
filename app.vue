@@ -1,4 +1,5 @@
 <template>
+  <NuxtLoadingIndicator v-if="store.IsLoading" />
   <div :data-theme="store.selectedTheme" class="min-h-dvh">
     <div class="grid md:grid lg:flex lg:justify-center">
       <div
@@ -37,5 +38,6 @@ const store = useMyStore();
 
 onMounted(() => {
   store.initialize();
+  store.checkToken();
 });
 </script>

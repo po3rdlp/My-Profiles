@@ -5,7 +5,7 @@ export const apiGit = axios.create({
 })
 
 export const apiSC = axios.create({
-    baseURL: 'http://localhost:3500/',
+    baseURL: 'https://petterl.xyz/simple-connect/',
 })
 
 apiSC.interceptors.request.use((config) => {

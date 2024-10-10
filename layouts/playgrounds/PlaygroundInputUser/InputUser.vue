@@ -301,6 +301,7 @@ const removeUsers = async (id: number) => {
       location.reload();
     } catch (err: any) {
       console.log(err.response.data.message);
+      isError.value = err.response.data.message;
     }
   } else {
     console.log("aborted");

@@ -9,10 +9,10 @@
         }"
       >
         <div class="hidden lg:block max-w-56 h-full">
-          <LazyLayoutsNavigationSideBar />
+          <NuxtLayout name="navigation-side-bar" />
         </div>
         <div class="lg:hidden">
-          <LazyLayoutsNavigationNavBar />
+          <NuxtLayout name="navigation-nav-bar" />
         </div>
       </div>
       <div
@@ -23,7 +23,7 @@
         }"
       >
         <NuxtLoadingIndicator />
-        <NuxtLayout>
+        <NuxtLayout name="main">
           <NuxtPage />
         </NuxtLayout>
       </div>

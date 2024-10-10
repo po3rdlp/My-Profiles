@@ -9,6 +9,7 @@ interface MyState {
 
   // auth
   isLoggedIn: boolean;
+  userId: number | null;
   authError: string;
   IsLoading: boolean;
   authToken: string;
@@ -24,6 +25,7 @@ export const useMyStore = defineStore({
     selectedTheme: "night",
     isLoggedIn: false,
     authError: "",
+    userId: null,
     IsLoading: false,
     authToken: "",
   }),
@@ -37,11 +39,15 @@ export const useMyStore = defineStore({
       if (process.client) {
         const savedTheme = localStorage.getItem("selectedTheme");
         const token = localStorage.getItem("access_token");
+        const LoggedIn = localStorage.getItem('LoggedIn');
         if (savedTheme) {
           this.selectedTheme = savedTheme;
         }
         if(token) {
           this.authToken = token;
+        }
+        if(LoggedIn !== null) {
+          this.isLoggedIn = LoggedIn === 'true'
         }
       }
     },
@@ -68,10 +74,15 @@ export const useMyStore = defineStore({
         const token = response.data.access_token
         if(process.client) {
           localStorage.setItem('access_token', token);
+          localStorage.setItem('LoggedIn', this.isLoggedIn ? 'true' : 'false');
+
         }
         this.isLoggedIn = true
         this.IsLoading = false;
-
+        this.userId = response.data.id;
+        console.log('data login', response.data)
+        window.location.reload();
+        
         return response.data
       } catch (err: any) {
         console.log('Login Gagal: ', err.response.data.message);
@@ -90,11 +101,20 @@ export const useMyStore = defineStore({
                 Authorization: `Bearer ${this.authToken}`
               }
             })
-            console.log(response.data.message);
-            this.isLoggedIn = true
+            console.log('validate token',response.data);
+
+            if (response.data.message === 'Token is valid') {
+              this.isLoggedIn = true
+              // navigateTo(`/playgrounds/${response.data.user.user.id}/home`)
+            }
+            console.log(this.isLoggedIn);
           } catch (err: any) {
             console.log("terjadi kesalahan", err.response.data)
             this.isLoggedIn = false;
+            if(process.client) {
+              localStorage.removeItem('access_token')
+              window.location.reload();
+            }
           }
         }
     },

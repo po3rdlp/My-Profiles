@@ -9,7 +9,7 @@
         <figure>
           <img
             class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-            src="../../../assets/img/samrat_logo.png"
+            src="../../assets/img/samrat_logo.png"
             alt="rsSamrat"
           />
         </figure>
@@ -27,7 +27,7 @@
         <figure>
           <img
             class="w-16 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-            src="../../../assets/img/kirana_logo.png"
+            src="../../assets/img/kirana_logo.png"
             alt="Movie"
           />
         </figure>
@@ -45,7 +45,7 @@
         <figure>
           <img
             class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-28 mr-2 object-fill"
-            src="../../../assets/img/hksp_logo.png"
+            src="../../assets/img/hksp_logo.png"
             alt="Movie"
           />
         </figure>

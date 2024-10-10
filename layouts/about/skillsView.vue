@@ -92,6 +92,4 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import type { NuxtMarquee } from "#build/components";
-</script>
+<script setup lang="ts"></script>

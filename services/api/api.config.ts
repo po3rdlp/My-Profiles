@@ -4,12 +4,35 @@ export const apiGit = axios.create({
     baseURL: 'https://api.github.com/'
 })
 
+// Production
+
+// export const apiSC = axios.create({
+//     baseURL: 'https://petterl.xyz/simple-connect/',
+// })
+
+// apiSC.interceptors.request.use((config) => {
+//   if (process.client) {
+//     const token = localStorage.getItem('access_token');
+//     if (token) {
+//       config.headers['Authorization'] = `Bearer ${token}`;
+//     }
+//   }
+//   return config;
+// }, (error) => {
+//   return Promise.reject(error);
+// });
+
+// export const apiSCAuth = axios.create({
+//     baseURL: 'https://petterl.xyz/simple-connect/'
+// })
+
+// development api
 export const apiSC = axios.create({
-    baseURL: 'https://petterl.xyz/simple-connect/',
+  baseURL: 'http://localhost:3500/',
 })
 
 apiSC.interceptors.request.use((config) => {
-  if (process.client) { // Check if running on the client side
+  if (process.client) {
     const token = localStorage.getItem('access_token');
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`;
@@ -21,7 +44,7 @@ apiSC.interceptors.request.use((config) => {
 });
 
 export const apiSCAuth = axios.create({
-    baseURL: 'https://petterl.xyz/simple-connect/'
+    baseURL: 'http://localhost:3500/'
 })
 
 

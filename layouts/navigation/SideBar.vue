@@ -8,16 +8,16 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="../../../assets/img/ai_images.jpg"
+                    src="../../assets/img/ai_images.jpg"
                     class="w-36 h-36 rounded-full"
                   />
                 </div>
                 <div>
-                  <label class="label grid text-sm"
-                    ><span class="text-sm text-white font-bold"
+                  <label class="label grid text-sm">
+                    <span class="text-sm text-white font-bold"
                       >Leonard Polandos</span
-                    ></label
-                  >
+                    >
+                  </label>
                   <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1">
                       <p class="text text-xs font-sora cursor-default">
@@ -50,7 +50,11 @@
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
                   <div class="w-full">
                     <ul class="grid gap-3">
-                      <li v-for="link in links" :key="link.name" class="w-full">
+                      <li
+                        v-for="link in routes"
+                        :key="link.name"
+                        class="w-full"
+                      >
                         <span
                           class="grid rounded-2xl p-2"
                           :class="[
@@ -97,21 +101,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import routes from "../../utils/routes/route";
 
 const route = useRoute();
 
 const store = useMyStore();
-
-const links = ref([
-  { name: "Home", path: "/" },
-  { name: "Dashboard", path: "/dashboard" },
-  { name: "About", path: "/about" },
-  { name: "Contact", path: "/contact" },
-  // { name: "Projects", path: "/projects" },
-  { name: "Comments", path: "/comments" },
-  { name: "Playground", path: "/playgrounds" },
-]);
 
 const isActive = (path: string) => {
   return route.path === path;

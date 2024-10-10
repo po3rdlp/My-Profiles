@@ -20,15 +20,15 @@
       </h1>
     </div>
     <div>
-      <LayoutsAboutSkillsView />
+      <NuxtLayout name="about-skills-view" />
     </div>
     <div>
       <label class="label">Experience</label>
-      <LayoutsAboutCarrerView />
+      <NuxtLayout name="about-carrer-view" />
     </div>
     <div>
       <label class="label">Education</label>
-      <LayoutsAboutEducationView />
+      <NuxtLayout name="about-education-view" />
     </div>
   </div>
 </template>

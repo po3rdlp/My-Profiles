@@ -309,7 +309,7 @@ const removeUsers = async (id: number) => {
 };
 
 onMounted(() => {
-  if (store.isLoggedIn) {
+  if (store.IsLoggedIn) {
     getData();
     console.log("Data token:", accessToken);
   } else {
@@ -318,7 +318,7 @@ onMounted(() => {
 });
 
 watch(
-  () => store.isLoggedIn,
+  () => store.IsLoggedIn,
   (newVal) => {
     if (newVal) {
       getData();

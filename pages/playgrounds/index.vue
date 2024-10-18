@@ -10,8 +10,14 @@
       </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
-    <div></div>
+    <div>
+      <NuxtLayout name="playgrounds-playground-login-form" />
+    </div>
   </div>
 </template>
 
-<script setup lang="tsx"></script>
+<script setup lang="tsx">
+definePageMeta({
+  middleware: "middleware-auth",
+});
+</script>

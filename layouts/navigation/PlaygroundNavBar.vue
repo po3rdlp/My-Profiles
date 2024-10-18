@@ -13,9 +13,10 @@
 </template>
 
 <script setup lang="ts">
+const store = useMyStore();
+
 const links = ref([
-  { name: "Concepts 1", path: "/" },
-  { name: "Concepts 2", path: "/dashboard" },
-  { name: "Concepts 3", path: "/about" },
+  { name: "Home", path: `/playgrounds/user-${store.userId}/` },
+  { name: "Show", path: `/playgrounds/user-${store.userId}/show` },
 ]);
 </script>

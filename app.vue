@@ -36,8 +36,21 @@ import "animate.css";
 
 const store = useMyStore();
 
-onMounted(() => {
-  store.initialize();
-  store.checkToken();
+const initializeStore = async () => {
+  await store.initialize();
+  await store.checkToken();
+};
+
+watch(
+  () => store.userId,
+  async (newValue, oldValue) => {
+    if (newValue !== oldValue) {
+      await initializeStore();
+    }
+  }
+);
+
+onMounted(async () => {
+  await initializeStore();
 });
 </script>

@@ -8,13 +8,12 @@ interface MyState {
   selectedTheme: string;
 
   // auth
-  isLoggedIn: boolean;
   userId: number | null;
   authError: string;
   IsLoading: boolean;
+  IsLoggedIn: boolean;
   authToken: string;
 }
-
 
 export const useMyStore = defineStore({
   id: "myStore",
@@ -23,8 +22,8 @@ export const useMyStore = defineStore({
     weatherCondition: false,
     theme: ["acid", "night"],
     selectedTheme: "night",
-    isLoggedIn: false,
     authError: "",
+    IsLoggedIn: false,
     userId: null,
     IsLoading: false,
     authToken: "",
@@ -32,29 +31,34 @@ export const useMyStore = defineStore({
   getters: {
     isClearDay: (state) => state.weatherCondition === true,
     isClearNight: (state) => state.weatherCondition === false,
-    setLoggedIn: (state) => state.isLoggedIn === true
   },
   actions: {
-    initialize() {
+    async initialize() {
       if (process.client) {
         const savedTheme = localStorage.getItem("selectedTheme");
         const token = localStorage.getItem("access_token");
-        const LoggedIn = localStorage.getItem('LoggedIn');
+        const userId = localStorage.getItem("userId");
+        const loggedIn = localStorage.getItem("IsLoggedIn")
+        
         if (savedTheme) {
           this.selectedTheme = savedTheme;
         }
-        if(token) {
+        if (token) {
           this.authToken = token;
+          this.IsLoggedIn = true;
         }
-        if(LoggedIn !== null) {
-          this.isLoggedIn = LoggedIn === 'true'
+        if (userId) {
+          this.userId = Number(userId);
+        } 
+        if(loggedIn) {
+          this.IsLoggedIn = loggedIn === 'true'; 
         }
       }
     },
-    toggleDrawer() {
+    async toggleDrawer() {
       this.isDrawerOpen = !this.isDrawerOpen;
     },
-    toggleWeatherCondition() {
+     async toggleWeatherCondition() {
       this.weatherCondition = !this.weatherCondition;
       this.selectedTheme = this.weatherCondition
         ? this.theme[0]
@@ -65,65 +69,70 @@ export const useMyStore = defineStore({
       }
     },
     async loginUser(username: string, password: string) {
-      this.IsLoading = true
+      this.IsLoading = true;
       try {
-        const response = await apiSCAuth.post('/dev/v1/auth/login', {
+        const response = await apiSCAuth.post("/dev/v1/auth/login", {
           userName: username,
-          password: password
+          password: password,
         });
-        const token = response.data.access_token
-        if(process.client) {
-          localStorage.setItem('access_token', token);
-          localStorage.setItem('LoggedIn', this.isLoggedIn ? 'true' : 'false');
+        const token = response.data.access_token;
+        const userid = response.data.user.id
+        this.userId = userid
+        
+        if (process.client) {
+          localStorage.setItem("access_token", token);
+          localStorage.setItem("IsLoggedIn", 'true');
+          localStorage.setItem("userId", userid);
+        } 
 
-        }
-        this.isLoggedIn = true
         this.IsLoading = false;
-        this.userId = response.data.id;
-        console.log('data login', response.data)
-        window.location.reload();
+
+        await navigateTo(`/playgrounds/user-${userid}/`);
         
         return response.data
       } catch (err: any) {
-        console.log('Login Gagal: ', err.response.data.message);
-        this.authError = `Error: ${err.response.data.message}`
+        console.log("Login Gagal: ", err.response.data.message);
+        this.authError = `Error: ${err.response.data.message}`;
         this.IsLoading = false;
+        this.IsLoggedIn = false
       }
     },
     async checkToken() {
-        if(this.authToken === "" || this.authToken === null) {
-          this.isLoggedIn = false;
-          console.log('Belum ada token')
-        } else {
-          try {
-            const response = await apiSC.get('/dev/v1/auth/validate-token', {
-              headers: {
-                Authorization: `Bearer ${this.authToken}`
-              }
-            })
-            console.log('validate token',response.data);
+      if (this.authToken === "" || this.authToken === null) {
+        console.log("Belum Ada Token");
+      } else {
+        try {
+          const response = await apiSC.get("/dev/v1/auth/validate-token", {
+            headers: {
+              Authorization: `Bearer ${this.authToken}`,
+            },
+          });
+          console.log("validate token", response.data);
 
-            if (response.data.message === 'Token is valid') {
-              this.isLoggedIn = true
-              // navigateTo(`/playgrounds/${response.data.user.user.id}/home`)
-            }
-            console.log(this.isLoggedIn);
-          } catch (err: any) {
-            console.log("terjadi kesalahan", err.response.data)
-            this.isLoggedIn = false;
-            if(process.client) {
-              localStorage.removeItem('access_token')
+        } catch (err: any) {
+          console.log("terjadi kesalahan", err.response.data);
+
+          if (process.client) {
+            localStorage.removeItem("access_token");
+            localStorage.setItem("IsLoggedIn", 'false');
+            this.IsLoggedIn = false;
+            
+            await useRouter().push('/playgrounds').then(() => {
               window.location.reload();
-            }
+            })
           }
         }
+      }
     },
     async logOut() {
-      if(process.client) {
-        localStorage.removeItem("access_token")
+      if (process.client) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("userId");
+        localStorage.setItem("IsLoggedIn", 'false');
       }
-      this.isLoggedIn = false;
-      window.location.reload();
-    }
+      await useRouter().push('/playgrounds').then(() => {
+        window.location.reload()
+      })
+    },
   },
 });

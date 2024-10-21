@@ -1,13 +1,18 @@
 <template>
-  <AtomsButtonComponent
-    :label="'Logout'"
-    variant="secondary"
-    :disabled="false"
-    @click="store.logOut()"
-    v-if="store.IsLoggedIn"
-  />
-  <NuxtLayout name="navigation-playground-nav-bar" />
-  <p>Hello user {{ $route.params }}</p>
+  <div>
+    <NuxtLayout name="playgrounds">
+      <AtomsButtonComponent
+        :label="'Logout'"
+        variant="secondary"
+        :disabled="false"
+        @click="store.logOut()"
+      />
+      <div>
+        <p>Hello World</p>
+      </div>
+      id :{{ store.userData?.id }}
+    </NuxtLayout>
+  </div>
 </template>
 
 <script setup lang="ts">

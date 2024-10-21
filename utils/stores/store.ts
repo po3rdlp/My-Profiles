@@ -8,11 +8,11 @@ interface MyState {
   selectedTheme: string;
 
   // auth
-  userId: number | null;
   authError: string;
   IsLoading: boolean;
   IsLoggedIn: boolean;
   authToken: string;
+  userData: any
 }
 
 export const useMyStore = defineStore({
@@ -24,9 +24,9 @@ export const useMyStore = defineStore({
     selectedTheme: "night",
     authError: "",
     IsLoggedIn: false,
-    userId: null,
     IsLoading: false,
     authToken: "",
+    userData: null,
   }),
   getters: {
     isClearDay: (state) => state.weatherCondition === true,
@@ -37,8 +37,8 @@ export const useMyStore = defineStore({
       if (process.client) {
         const savedTheme = localStorage.getItem("selectedTheme");
         const token = localStorage.getItem("access_token");
-        const userId = localStorage.getItem("userId");
         const loggedIn = localStorage.getItem("IsLoggedIn")
+        const userData = localStorage.getItem("user");
         
         if (savedTheme) {
           this.selectedTheme = savedTheme;
@@ -47,9 +47,9 @@ export const useMyStore = defineStore({
           this.authToken = token;
           this.IsLoggedIn = true;
         }
-        if (userId) {
-          this.userId = Number(userId);
-        } 
+        if (userData) {
+          this.userData = JSON.parse(userData)
+        }
         if(loggedIn) {
           this.IsLoggedIn = loggedIn === 'true'; 
         }
@@ -76,18 +76,18 @@ export const useMyStore = defineStore({
           password: password,
         });
         const token = response.data.access_token;
-        const userid = response.data.user.id
-        this.userId = userid
-        
+        const userdata = response.data?.user
+        this.userData = userdata
+
         if (process.client) {
           localStorage.setItem("access_token", token);
           localStorage.setItem("IsLoggedIn", 'true');
-          localStorage.setItem("userId", userid);
+          localStorage.setItem("user", JSON.stringify(userdata));
         } 
 
         this.IsLoading = false;
 
-        await navigateTo(`/playgrounds/user-${userid}/`);
+        await navigateTo(`/playgrounds/user-${userdata?.id}/`);
         
         return response.data
       } catch (err: any) {
@@ -127,7 +127,7 @@ export const useMyStore = defineStore({
     async logOut() {
       if (process.client) {
         localStorage.removeItem("access_token");
-        localStorage.removeItem("userId");
+        localStorage.removeItem("user");
         localStorage.setItem("IsLoggedIn", 'false');
       }
       await useRouter().push('/playgrounds').then(() => {

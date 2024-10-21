@@ -14,7 +14,7 @@
 <script setup lang="tsx">
 const store = useMyStore();
 
-const id = store.userId;
+const id = store.userData.id;
 
 const layout = "playgrounds";
 </script>

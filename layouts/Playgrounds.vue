@@ -9,6 +9,9 @@
         </span>
       </li>
     </ul>
+    <div>
+      <slot />
+    </div>
   </div>
 </template>
 

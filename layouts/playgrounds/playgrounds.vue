@@ -11,8 +11,4 @@
   </div>
 </template>
 
-<script setup lang="tsx">
-const store = useMyStore();
-
-const id = store.userData.id;
-</script>
+<script setup lang="tsx"></script>

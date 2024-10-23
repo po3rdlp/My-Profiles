@@ -9,14 +9,6 @@
       <p class="text-sm font-bold">
         You Are Currently Login as {{ store.userData?.userName }}, click to log
         out
-        <!-- <AtomsButtonComponent
-          :label="'Logout'"
-          variant="secondary"
-          :disabled="false"
-          @click="store.logOut()"
-        >
-          <Icon name="material-symbols:logout" size="20px"
-        /></AtomsButtonComponent> -->
       </p>
     </div>
     <div class="grid md:grid lg:flex lg:justify-center">
@@ -48,5 +40,9 @@
 </template>
 
 <script setup lang="tsx">
-const store = useMyStore();
+let store = useMyStore();
+
+onMounted(() => {
+  store;
+});
 </script>

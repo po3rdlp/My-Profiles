@@ -1,24 +1,18 @@
 <template>
   <div>
-    <NuxtLayout name="playgrounds">
-      <AtomsButtonComponent
-        :label="'Logout'"
-        variant="secondary"
-        :disabled="false"
-        @click="store.logOut()"
-      />
-      <div>
-        <p>Hello World</p>
-      </div>
-      id :{{ store.userData?.id }}
-    </NuxtLayout>
+    <AtomsButtonComponent
+      :label="'Logout'"
+      variant="secondary"
+      :disabled="false"
+      @click="store.logOut()"
+    />
+    <div>
+      <p>Hello World</p>
+    </div>
+    <div>id :{{ store.userData?.id }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
 const store = useMyStore();
-
-definePageMeta({
-  middleware: "middleware-auth",
-});
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <NuxtLayout name="main">
+    <NuxtLayout :name="layoutName">
       <NuxtPage />
     </NuxtLayout>
   </div>
@@ -16,14 +16,9 @@ const initializeStore = async () => {
   await store.checkToken();
 };
 
-// watch(
-//   () => store.userData,
-//   async (newValue, oldValue) => {
-//     if (newValue !== oldValue) {
-//       await initializeStore();
-//     }
-//   }
-// );
+const layoutName = computed(() => {
+  return store.IsLoggedIn ? "playgrounds" : "main";
+});
 
 onMounted(async () => {
   await initializeStore();

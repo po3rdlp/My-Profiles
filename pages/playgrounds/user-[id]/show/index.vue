@@ -1,11 +1,9 @@
 <template>
   <div>
-    <NuxtLayout name="playgrounds">
-      <div>
-        <p>show pages</p>
-        {{ store.userData?.id }}
-      </div>
-    </NuxtLayout>
+    <div>
+      <p>show pages</p>
+      {{ store.userData?.id }}
+    </div>
   </div>
 </template>
 

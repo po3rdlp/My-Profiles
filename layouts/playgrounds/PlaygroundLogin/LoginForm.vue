@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!store.IsLoading">
     <MoleculesBaseForm
       :intial-values="formValues"
       :on-submit="handleFormSubmit"
@@ -28,6 +28,14 @@
     <p v-if="store.authError" class="text-red-500 mt-2 text-lg">
       {{ store.authError }}
     </p>
+  </div>
+  <div v-else class="flex justify-center items-center gap-3 mt-56">
+    <p class="font-bold flex gap-1 ">CHECKING CREDENTIALS <p class="animate animate-pulse">.....</p></p>
+    <Icon
+      name="material-symbols:atr"
+      class="animate animate-spin"
+      size="50px"
+    />
   </div>
 </template>
 

@@ -10,15 +10,7 @@ const routes: RouteRecordRaw[] = [
     path: '/playgrounds',
     component: () => import('~/pages/playgrounds/index.vue'), // List of playgrounds
     name: 'Playgrounds',
-    // children: [
-    //   {
-    //     path: ':id/home',
-    //     component: () => import('~/pages/playgrounds/[id].vue'),
-    //     name: 'Playground Home',
-    //   },
-    // ]
   }
-  // Add more routes as needed
 ];
 
 export default routes;

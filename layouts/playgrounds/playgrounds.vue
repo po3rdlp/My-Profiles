@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="flex justify-between items-center mt-3">
-      <h1 class="text text-2xl font-bold capitalize">PLAYGROUND {{ id }}</h1>
+      <h1 class="text text-2xl font-bold capitalize">PLAYGROUND</h1>
     </div>
-    <div>
+    <!-- <div>
       <NuxtLayout>
         <NuxtPage :name="layout" />
       </NuxtLayout>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -15,6 +15,4 @@
 const store = useMyStore();
 
 const id = store.userData.id;
-
-const layout = "playgrounds";
 </script>

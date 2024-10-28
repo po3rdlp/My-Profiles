@@ -136,7 +136,6 @@ export const useMyStore = defineStore({
         localStorage.setItem("IsLoggedIn", "false");
         this.setIsLoggedIn(false);
         this.setUserData(null);
-
         return
       }
       try {

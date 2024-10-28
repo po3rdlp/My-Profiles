@@ -1,22 +1,39 @@
 <template>
-  <div class="p-3">
-    <ul
-      class="flex items-center justify-evenly rounded-xl p-3 w-full overflow-auto min-h-full bg-gray-600 text-base-content"
+  <div :data-theme="store.selectedTheme">
+    <div class="rounded-sm bg-slate-500 p-2">
+      <div v-on:click="store.logOut()" class="flex justify-end">
+        <button class="btn btn-ghost border rounded-xl">
+          You are logged in as {{ store.userData.userName }}, Click Log Out
+        </button>
+      </div>
+      <ul class="flex items-center justify-evenly min-h-full text-base-content">
+        <li v-for="link in links" :key="link.name">
+          <span
+            class="w-full rounded-lg p-2"
+            :class="{
+              'shadow-2xl border rounded-2xl text-white': isActive(link.path),
+            }"
+          >
+            <NuxtLink
+              :to="link.path"
+              :class="{
+                'shadow-2xl border rounded-2xl text-red-500': isActive(
+                  link.path
+                ),
+              }"
+              >{{ link.name }}</NuxtLink
+            >
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="p-3"
+      :class="{
+        'font-bold text-slate-950': store.selectedTheme === 'acid',
+        'font-bold text-slate-200': store.selectedTheme !== 'acid',
+      }"
     >
-      <li v-for="link in links" :key="link.name">
-        <span
-          class="w-full rounded-lg p-2"
-          :class="{
-            'shadow-2xl border rounded-2xl text-white': isActive(link.path),
-          }"
-        >
-          <NuxtLink :to="link.path" exact-active-class="active-link">{{
-            link.name
-          }}</NuxtLink>
-        </span>
-      </li>
-    </ul>
-    <div>
       <slot />
     </div>
   </div>
@@ -43,5 +60,8 @@ onMounted(() => {
 });
 
 const currentPath = computed(() => window.location.pathname);
-const isActive = (path: string) => currentPath.value === path;
+
+const isActive = (path: string) => {
+  return currentPath.value === path;
+};
 </script>

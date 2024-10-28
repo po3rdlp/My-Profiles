@@ -2,10 +2,8 @@
   <div>
     <div
       v-if="!layoutReady"
-      class="bg-slate-300 animate animate-pulse w-full h-screen flex justify-center items-center"
-    >
-      <p class="font-bold text-center">LOADING ...</p>
-    </div>
+      class="bg-slate-200 animate animate-ping w-full h-screen flex justify-center items-center"
+    ></div>
     <div v-else>
       <NuxtLayout :name="layoutName">
         <NuxtPage />

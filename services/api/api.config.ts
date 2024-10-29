@@ -27,25 +27,25 @@ export const apiSCAuth = axios.create({
 })
 
 // development api
-// export const apiSC = axios.create({
-//   baseURL: 'http://localhost:3500/',
-// })
+// // export const apiSC = axios.create({
+// //   baseURL: 'http://localhost:3500/',
+// // })
 
-// export const apiSCAuth = axios.create({
-//     baseURL: 'http://localhost:3500/'
-// })
+// // export const apiSCAuth = axios.create({
+// //     baseURL: 'http://localhost:3500/'
+// // })
 
-apiSC.interceptors.request.use((config) => {
-  if (process.client) {
-    const token = localStorage.getItem('access_token');
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
-  }
-  return config;
-}, (error) => {
-  return Promise.reject(error);
-});
+// apiSC.interceptors.request.use((config) => {
+//   if (process.client) {
+//     const token = localStorage.getItem('access_token');
+//     if (token) {
+//       config.headers['Authorization'] = `Bearer ${token}`;
+//     }
+//   }
+//   return config;
+// }, (error) => {
+//   return Promise.reject(error);
+// });
 
 
 

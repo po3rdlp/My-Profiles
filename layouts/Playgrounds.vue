@@ -1,8 +1,11 @@
 <template>
   <div :data-theme="store.selectedTheme">
     <div class="rounded-sm bg-slate-500 p-2">
-      <div v-on:click="store.logOut()" class="flex justify-end">
-        <button class="btn btn-ghost border rounded-xl">
+      <div
+        v-on:click="store.logOut()"
+        class="flex justify-center lg:justify-end"
+      >
+        <button class="btn btn-ghost btn-sm">
           You are logged in as {{ store.userData.userName }}, Click Log Out
         </button>
       </div>

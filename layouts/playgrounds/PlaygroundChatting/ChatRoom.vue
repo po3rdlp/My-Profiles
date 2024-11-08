@@ -1,17 +1,29 @@
 <template>
   <div class="">
     <AtomsLabelComponent text="Chat Room" custom-class="font-bold" />
-    <div class="flex items-center gap-5">
+    <div class="flex items-center gap-5 w-full overflow-auto">
       <div v-for="user in users" :key="user.id" class="mt-2">
-        <div class="grid avatar indicator">
-          <span v-if="user.online" class="indicator-item badge badge-secondary"
-            >online</span
-          >
-          <span v-else class="indicator-item badge badge-danger">offline</span>
-          <div class="h-20 w-20 rounded-lg">
-            <img alt="User Avatar" src="https://avatar.iran.liara.run/public" />
+        <div class="grid avatar indicator relative">
+          <!-- Green indicator, positioned absolutely -->
+          <div
+            v-if="user.online"
+            class="w-5 h-5 bg-green-400 rounded-full absolute top-0 right-0 transform"
+          ></div>
+          <div
+            v-else
+            class="w-5 h-5 bg-red-500 rounded-full absolute top-0 right-0 transform"
+          ></div>
+
+          <!-- Avatar image -->
+          <div class="h-20 w-20 lg:w-20 lg:h-20 rounded-lg">
+            <img
+              alt="User Avatar"
+              src="https://picsum.photos/seed/picsum/200/300"
+            />
           </div>
-          <p>{{ user.userName }}</p>
+
+          <!-- User name -->
+          <p class="mt-2">{{ user.userName }}</p>
         </div>
       </div>
     </div>

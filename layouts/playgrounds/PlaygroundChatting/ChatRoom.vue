@@ -39,7 +39,7 @@
     </button>
   </div>
   <div>
-    <p>{{ userMessage ? userMessage : "Tidak ada pesan" }}</p>
+    <p>{{ userMessage ? `Pesan : ${userMessage}` : "Tidak ada pesan" }}</p>
   </div>
 </template>
 
@@ -81,7 +81,7 @@ socket.on("user-online-status", (data) => {
 });
 
 socket.on("new-message", (data) => {
-  userMessage.value = data;
+  userMessage.value = data.message;
 });
 
 const getData = async () => {

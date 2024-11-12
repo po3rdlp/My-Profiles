@@ -6,7 +6,7 @@ const clientId = ref('');
 const errorMessage = ref('');
 
 const initSocket = (token: any, idClient: any) => {
-  const socket = io("https://petterl.xyz/", {
+  const socket = io("http://localhost:3500/", {
     query: { token, clientId: idClient },
   });
 

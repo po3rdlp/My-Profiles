@@ -15,37 +15,41 @@
           ></div>
 
           <!-- Avatar image -->
-          <div class="h-20 w-20 lg:w-20 lg:h-20 rounded-lg">
+          <div
+            v-if="user.id !== currentUserId"
+            :class="{
+              'h-20 w-20 lg:w-20 lg:h-20 rounded-lg border border-green-500':
+                choosenUserId === user.id,
+              'h-20 w-20 lg:w-20 lg:h-20 rounded-lg': choosenUserId !== user.id,
+            }"
+          >
             <img
+              v-on:click="chooseUser(user.id, user.userName)"
               alt="User Avatar"
               src="https://picsum.photos/seed/picsum/200/300"
             />
           </div>
 
           <!-- User name -->
-          <p class="mt-2">{{ user.userName }}</p>
+          <p class="mt-2">
+            {{ user.id !== currentUserId ? user.userName : null }}
+          </p>
         </div>
       </div>
     </div>
   </div>
-  <div class="p-2 flex gap-3">
-    <input
-      v-model="inputMessage"
-      class="input input-lg border rounded-2xl w-full"
-      placeholder="input"
-    />
-    <button class="btn btn-lg border rounded-2xl" v-on:click="sendMessage()">
-      Send
-    </button>
-  </div>
   <div>
-    <p>{{ userMessage ? `Pesan : ${userMessage}` : "Tidak ada pesan" }}</p>
+    <UserRoom
+      :user-id="choosenUserId ?? 0"
+      :user-name="choosenUserName ?? 'N/A'"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import initSocket from "~/utils/socket/socket";
 import { apiSC } from "~/services/api/api.config";
+import UserRoom from "./UserRoomChat/UserRoom.vue";
 
 // Define the User type
 interface User {
@@ -54,12 +58,15 @@ interface User {
   online: boolean;
 }
 
-const inputMessage = ref<string>("");
-const userMessage = ref<string>("");
+// const inputMessage = ref<string>("");
+// const userMessage = ref<string>("");
 const store = useMyStore();
 const users = ref<User[]>([]);
 const isLoading = ref(false);
 const idClient = `${store.userData.userName}-${store.userData.id}`;
+const currentUserId = ref<number>(0);
+const choosenUserId = ref<number | undefined>();
+const choosenUserName = ref<string>("");
 
 const { socket } = initSocket(store.authToken, idClient);
 
@@ -80,9 +87,9 @@ socket.on("user-online-status", (data) => {
   updateUsersStatus(data.userId, data.online);
 });
 
-socket.on("new-message", (data) => {
-  userMessage.value = data.message;
-});
+// socket.on("new-message", (data) => {
+//   userMessage.value = data.message;
+// });
 
 const getData = async () => {
   isLoading.value = true;
@@ -106,14 +113,22 @@ const getData = async () => {
   }
 };
 
-const sendMessage = () => {
-  if (inputMessage.value.trim()) {
-    socket.emit("send-message", { content: inputMessage.value });
-    inputMessage.value = "";
-  }
+const chooseUser = (userId: number, userName: string) => {
+  choosenUserId.value = userId;
+  choosenUserName.value = userName;
+  console.log(userId);
+  console.log(userName);
 };
 
+// const sendMessage = () => {
+//   if (inputMessage.value.trim()) {
+//     socket.emit("send-message", { content: inputMessage.value });
+//     inputMessage.value = "";
+//   }
+// };
+
 onMounted(() => {
+  currentUserId.value = store.userData.id;
   getData();
 });
 </script>

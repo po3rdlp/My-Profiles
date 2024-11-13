@@ -5,9 +5,9 @@ const isConnected = ref(false);
 const clientId = ref('');
 const errorMessage = ref('');
 
-const initSocket = (token: any, idClient: any) => {
+const initSocket = (token: any, idClient: any, userName: any) => {
   const socket = io("https://petterl.xyz/", {
-    query: { token, clientId: idClient },
+    query: { token, clientId: idClient, username: userName  },
   });
 
   socket.on("connect", () => {

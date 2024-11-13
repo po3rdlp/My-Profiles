@@ -3,10 +3,10 @@
     <div class="rounded-sm bg-slate-500 p-2">
       <div
         v-on:click="store.logOut()"
-        class="flex justify-center lg:justify-end"
+        class="flex justify-end lg:justify-end p-3"
       >
         <button class="btn btn-ghost btn-sm">
-          You are logged in as {{ store.userData.userName }}, Click Log Out
+          <Icon name="solar:logout-line-duotone" class="w-8 h-8" />Keluar
         </button>
       </div>
       <ul class="flex items-center justify-evenly min-h-full text-base-content">

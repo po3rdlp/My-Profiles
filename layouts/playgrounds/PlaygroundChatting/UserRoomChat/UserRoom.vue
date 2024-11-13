@@ -4,52 +4,54 @@
       PILIH USER TERLEBIH DAHULU
     </p>
   </div>
-  <div v-else class="p-2 mt-2 w-full h-full flex flex-col border rounded-2xl">
+  <div v-else class="p-1 mt-2 w-full h-full flex flex-col">
     <!-- Header chat -->
     <p class="mb-1 p-2">
       Your Chat With <span class="underline">{{ props.userName }}</span>
     </p>
 
-    <!-- Chat messages container -->
-    <div class="grid p-3 h-96 overflow-auto">
-      <div>
+    <div class="w-full h-screen flex flex-col p-1 overflow-auto">
+      <!-- Chat Messages -->
+      <div class="flex-1 overflow-auto">
         <div
-          v-for="(chat, index) in sortedChats"
-          :key="chat.id"
           :class="
             chat.sender.userName === props.userName
-              ? 'chat chat-end mb-2'
-              : 'chat chat-start mb-2'
+              ? 'chat chat-end mb-1'
+              : 'chat chat-start mb-1'
           "
+          v-for="chat in sortedChats"
+          :key="chat.id"
         >
-          <div>
-            <label
-              v-if="
-                index === 0 ||
-                sortedChats[index - 1].sender.userName !== chat.sender.userName
-              "
-              class="text-sm lg:text-lg"
-            >
-              {{ chat.sender.userName }}
-            </label>
-            <div class="chat-bubble p-1 rounded-lg">
-              <p class="text-sm lg:text-lg break-words">{{ chat.message }}</p>
+          <div class="chat chat-start">
+            <div class="chat-image avatar">
+              <div class="w-10 rounded-full">
+                <img
+                  alt="Tailwind CSS chat bubble component"
+                  src="https://api.dicebear.com/7.x/adventurer-neutral/svg?seed=mail@ashallendesign.co.uk"
+                />
+              </div>
             </div>
+            <div class="chat-header">
+              {{ chat.sender.userName }}
+              <time class="text-xs opacity-50">{{
+                chat.timestamp.split("T")[1].split(":").slice(0, 2).join(":")
+              }}</time>
+            </div>
+            <div class="chat-bubble w-full">{{ chat.message }}</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Message input and send button -->
-    <div class="p-2 flex gap-3 items-center">
-      <input
-        class="input input-md border rounded-2xl w-full"
-        placeholder="Type a message"
-        v-model="messageInput"
-      />
-      <button class="btn btn-md border rounded-2xl" @click="sendMessage">
-        Send
-      </button>
+      <div class="p-2 flex gap-3 items-center">
+        <input
+          class="input input-md border rounded-2xl w-full"
+          placeholder="Type a message"
+          v-model="messageInput"
+        />
+        <button class="btn btn-md border rounded-2xl" @click="sendMessage">
+          Send
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -74,10 +76,15 @@ interface Chat {
 const receivedChats = ref<Chat[]>([]);
 const senderChats = ref<Chat[]>([]);
 const messageInput = ref<string>("");
+const userNameC = ref<string>("");
 const store = useMyStore();
 const idClient = `${store.userData.userName}-${store.userData.id}`;
 
-const { socket } = initSocket(store.authToken, idClient);
+const { socket } = initSocket(
+  store.authToken,
+  idClient,
+  store.userData?.userName
+);
 
 const props = defineProps({
   userId: {
@@ -115,7 +122,6 @@ const getChatDataSent = async () => {
   }
 };
 
-// Watch for changes in userId and reload chat data
 watch(
   () => props.userId,
   async (newUserId, oldUserId) => {
@@ -124,14 +130,13 @@ watch(
       await getChatDataSent();
     }
   },
-  { immediate: true } // Ensure this runs on mount as well
+  { immediate: true }
 );
 
 // Computed property to merge and sort chats by timestamp
 const sortedChats = computed(() => {
   // Combine both received and sent chats into a single array
   const allChats = [...receivedChats.value, ...senderChats.value];
-
   // Sort chats based on timestamp (ascending order)
   return allChats.sort(
     (a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
@@ -143,9 +148,8 @@ onMounted(() => {
   socket.on("new-message", (data: any) => {
     console.log("Received new message:", data);
 
-    // Update receivedChats or senderChats based on the message
     const newChat: Chat = {
-      id: data.timestamp, // Use timestamp or a unique ID
+      id: data.timestamp,
       sender: { userName: data.userName },
       message: data.message,
       userName: data.userName,
@@ -154,6 +158,7 @@ onMounted(() => {
 
     // Update the chat list dynamically
     receivedChats.value.push(newChat);
+    userNameC.value = newChat.userName;
   });
 });
 
@@ -169,13 +174,12 @@ const sendMessage = () => {
   if (messageInput.value.trim()) {
     const messageData = {
       content: messageInput.value,
-      receiverId: props.userId, // Assuming the receiver is the current user
+      receiverId: props.userId,
     };
 
     // Emit the message to the server
     socket.emit("user-sending-message", messageData);
 
-    // Optionally clear input after sending
     messageInput.value = "";
   }
 };

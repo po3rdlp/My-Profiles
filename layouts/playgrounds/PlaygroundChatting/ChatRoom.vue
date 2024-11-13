@@ -1,26 +1,15 @@
 <template>
   <div class="">
     <AtomsLabelComponent text="Chat Room" custom-class="font-bold" />
-    <div class="flex items-center gap-5 w-full overflow-auto">
+    <div class="flex items-center gap-2 w-full overflow-auto">
       <div v-for="user in users" :key="user.id" class="mt-2">
         <div class="grid avatar indicator relative">
-          <!-- Green indicator, positioned absolutely -->
-          <div
-            v-if="user.online"
-            class="w-5 h-5 bg-green-400 rounded-full absolute top-0 right-0 transform"
-          ></div>
-          <div
-            v-else
-            class="w-5 h-5 bg-red-500 rounded-full absolute top-0 right-0 transform"
-          ></div>
-
-          <!-- Avatar image -->
           <div
             v-if="user.id !== currentUserId"
             :class="{
-              'h-20 w-20 lg:w-20 lg:h-20 rounded-lg border border-green-500':
+              'h-16 w-16 lg:w-16 lg:h-16 rounded-lg border border-green-500':
                 choosenUserId === user.id,
-              'h-20 w-20 lg:w-20 lg:h-20 rounded-lg': choosenUserId !== user.id,
+              'h-16 w-16 lg:w-16 lg:h-16 rounded-lg': choosenUserId !== user.id,
             }"
           >
             <img
@@ -30,7 +19,7 @@
             />
           </div>
 
-          <!-- User name -->
+          <!-- User name, only show for users other than the current user -->
           <p class="mt-2">
             {{ user.id !== currentUserId ? user.userName : null }}
           </p>
@@ -68,7 +57,7 @@ const currentUserId = ref<number>(0);
 const choosenUserId = ref<number | undefined>();
 const choosenUserName = ref<string>("");
 
-const { socket } = initSocket(store.authToken, idClient);
+const { socket } = initSocket(store.authToken, idClient, undefined);
 
 const updateUsersStatus = (userId: number, onlineStatus: boolean) => {
   const userIndex = users.value.findIndex((user) => user.id === userId);

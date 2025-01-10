@@ -5,7 +5,7 @@
       class="bg-slate-200 animate animate-ping w-full h-screen flex justify-center items-center"
     ></div>
     <div v-else>
-      <NuxtLayout :name="layoutName">
+      <NuxtLayout name="main">
         <NuxtPage />
       </NuxtLayout>
     </div>
@@ -14,19 +14,14 @@
 
 <script setup lang="ts">
 import "animate.css";
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted } from "vue";
 const store = useMyStore();
 const layoutReady = ref(false);
 
 const initializeStore = async () => {
   await store.initialize();
-  await store.checkToken();
   layoutReady.value = true;
 };
-
-const layoutName = computed(() => {
-  return store.IsLoggedIn ? "playgrounds" : "main";
-});
 
 onMounted(async () => {
   await initializeStore();

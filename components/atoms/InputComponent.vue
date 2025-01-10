@@ -16,7 +16,7 @@
 const props = defineProps<{
   type: string;
   placeholder: string;
-  disabled: boolean;
+  disabled?: boolean;
   message: string;
   err: boolean;
   modelValue: string | number;

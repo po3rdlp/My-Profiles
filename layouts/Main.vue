@@ -1,16 +1,6 @@
 <template>
-  <NuxtLoadingIndicator v-if="store.IsLoading" />
   <div :data-theme="store.selectedTheme" class="min-h-dvh">
-    <div
-      v-if="store.IsLoggedIn"
-      v-on:click="store.logOut()"
-      class="flex justify-center items-center gap-3"
-    >
-      <p class="text-sm font-bold">
-        You Are Currently Login as {{ store.userData?.userName }}, click to log
-        out
-      </p>
-    </div>
+    <div class="flex justify-center items-center gap-3"></div>
     <div class="grid md:grid lg:flex lg:justify-center">
       <div
         :class="{

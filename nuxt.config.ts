@@ -22,9 +22,13 @@ export default defineNuxtConfig({
     { src: '~/plugins/firebase.ts', mode: 'client' },
   ],
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee', 'nuxt-particles'],
   pinia: {
     storesDirs: ['./stores/**', './utils/stores/**'],
+  },
+  particles: {
+    mode: 'full', // 'full' | 'slim' | 'basic' | 'custom'
+    lazy: false
   },
   devServer: {
     port: 5173,
@@ -44,7 +48,8 @@ export default defineNuxtConfig({
         {rel:'preconnect', href:'https://fonts.googleapis.com'},
         {rel:'preconnect', href:'https://fonts.gstatic.com', crossorigin:'anonymous'},
         {href:'https://fonts.googleapis.com/css2?family=Sora:wght@100&display=swap', rel:'stylesheet'},
-        {rel:'stylesheet', href:'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'}
+        {rel:'stylesheet', href:'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'},
+        {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'}
       ],
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',

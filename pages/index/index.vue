@@ -1,11 +1,67 @@
 <template>
-  <div class="flex justify-center items-center mt-56">
-    <h1 class="text text-center animate-pulse">
-      Hello, welcome to my website. This website is actually 67% completed, This
-      Website built with Nuxt 3 and backed by a NestJS API for seamless
-      integration data & for my own learning as a full stack web developer
-      journey
-      <p class="text-4xl">☺</p>
-    </h1>
+  <div class="absolute hero min-h-screen">
+    <div class="hero-content text-center text-neutral-content grid">
+      <div class="max-w-5xl animate__animated animate__backInDown">
+        <h1
+          class="h-6 md:h-14 lg:h-16 text-2xl md:text-4xl lg:text-6xl mb-3 md:mb-3 lg:mb-1"
+        >
+          Leonard Petter Polandos
+        </h1>
+        <div class="mb-5 p-2 max-w-3xl">
+          <p
+            class="mb-1 text-base md:text-sm lg:text-lg text-gray-500 dark:text-gray-400 font-semibold"
+          >
+            Hello! I'm an experienced fullstack web developer, proficient in
+            both front-end and back-end technologies. My focus is on crafting
+            dynamic web applications that deliver seamless user experiences.
+          </p>
+        </div>
+        <div class="flex justify-center gap-5">
+          <a href="https://github.com/po3rdlp" target="_blank">
+            <Icon
+              name="material-symbols-light:shield-moon-outline"
+              size="34px"
+            />
+          </a>
+          <a>
+            <Icon
+              name="material-symbols-light:shield-moon-outline"
+              size="34px"
+            />
+          </a>
+          <a href="https://www.instagram.com/leonpolandos/" target="_blank">
+            <Icon
+              name="material-symbols-light:shield-moon-outline"
+              size="34px"
+            />
+          </a>
+          <a href="https://www.facebook.com/Lpolandos/" target="_blank">
+            <Icon
+              name="material-symbols-light:shield-moon-outline"
+              size="34px"
+            />
+          </a>
+          <a href="https://twitter.com/po3rdlp" target="_blank">
+            <Icon
+              name="material-symbols-light:shield-moon-outline"
+              size="34px"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="animate__animated animate__bounceInUp">
+        <RouterLink to="/profile/home"
+          ><a
+            ><h1
+              class="mb-5 text-lg font-bold btn btn-sm btn-ghost hover:bg-none mt-3"
+            >
+              See More Details..
+            </h1></a
+          ></RouterLink
+        >
+      </div>
+    </div>
   </div>
 </template>
+
+<script setup lang="ts"></script>

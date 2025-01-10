@@ -4,6 +4,7 @@
   "compilerOptions": {
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noEmitOnError": true
+    "noEmitOnError": true,
+    "types": ["tsparticles-engine"]
   }
 }

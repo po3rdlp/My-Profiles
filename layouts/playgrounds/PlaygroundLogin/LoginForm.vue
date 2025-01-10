@@ -1,15 +1,13 @@
 <template>
-  <div v-if="!store.IsLoading">
+  <div>
     <MoleculesBaseForm
       :intial-values="formValues"
       :on-submit="handleFormSubmit"
       :submit-button-text="'Login'"
-      :submit-button-boolean="store.IsLoading"
     >
       <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-3 mb-2">
         <AtomsInputComponent
           placeholder="Username"
-          :disabled="store.IsLoading"
           :err="errors.userNameError"
           :message="messages.userNameMessage"
           type="text"
@@ -17,7 +15,6 @@
         />
         <AtomsInputComponent
           placeholder="Password"
-          :disabled="store.IsLoading"
           :err="errors.passwordError"
           type="password"
           :message="messages.passwordMessage"
@@ -25,17 +22,6 @@
         />
       </div>
     </MoleculesBaseForm>
-    <p v-if="store.authError" class="text-red-500 mt-2 text-lg">
-      {{ store.authError }}
-    </p>
-  </div>
-  <div v-else class="flex justify-center items-center gap-3 mt-56">
-    <p class="font-bold flex gap-1 ">CHECKING CREDENTIALS <p class="animate animate-pulse">.....</p></p>
-    <Icon
-      name="material-symbols:atr"
-      class="animate animate-spin"
-      size="50px"
-    />
   </div>
 </template>
 
@@ -44,8 +30,6 @@ interface FormValues {
   userName: string;
   password: string;
 }
-
-const store = useMyStore();
 
 const formValues = ref<FormValues>({
   userName: "",
@@ -85,14 +69,14 @@ const handleFormSubmit = async (formState: FormValues) => {
       errors.value.userNameError = true;
     }
 
-    if (!formState.password || formState.password.length < 6) {
+    if (!formState.password || formState.password.length < 4) {
       messages.value.passwordMessage =
-        "Password must contain at least 6 characters.";
+        "Password must contain at least 4 characters.";
       errors.value.passwordError = true;
     }
 
     if (!errors.value.userNameError && !errors.value.passwordError) {
-      await store.loginUser(formState.userName, formState.password);
+      console.log("Everything is removed");
     }
   } catch (error: any) {
     console.log(error);

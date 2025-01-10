@@ -6,7 +6,7 @@ export const apiGit = axios.create({
 
 // Production
 export const apiSC = axios.create({
-    baseURL: 'https://petterl.xyz/simple-connect/',
+    baseURL: 'https://dummyjson.com/',
 })
 
 apiSC.interceptors.request.use((config) => {
@@ -22,7 +22,7 @@ apiSC.interceptors.request.use((config) => {
 });
 
 export const apiSCAuth = axios.create({
-    baseURL: 'https://petterl.xyz/simple-connect/'
+    baseURL: 'https://dummyjson.com/'
 })
 
 // development api

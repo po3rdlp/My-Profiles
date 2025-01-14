@@ -11,7 +11,7 @@
       </div>
       <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
     </div>
-    <div class="mt-2">
+    <div class="mt-2 animate__animated animate__fadeInDown">
       <label class="text text-lg font-bold capitalize"
         >Find Me on Social Media</label
       >

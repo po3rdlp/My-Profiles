@@ -30,12 +30,12 @@
         </div>
       </div>
       <div class="animate__animated animate__bounceInUp">
-        <NuxtLink
-          to="/dashboard"
+        <a
+          href="/dashboard"
           class="mb-5 text-lg font-bold btn btn-sm btn-ghost hover:bg-none mt-3"
         >
-          See More Details.. ></NuxtLink
-        >
+          See More Details..
+        </a>
       </div>
     </div>
   </div>

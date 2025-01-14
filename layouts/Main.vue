@@ -1,5 +1,5 @@
 <template>
-  <div :data-theme="store.selectedTheme" class="min-h-dvh">
+  <div :data-theme="store.selectedTheme" class="min-h-dvh font-sora">
     <div class="flex justify-center items-center gap-3"></div>
     <div class="grid md:grid lg:flex lg:justify-center">
       <div

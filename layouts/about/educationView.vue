@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="animate__animated animate__fadeInDown">
     <div class="mt-1">
       <div class="grid grid-cols-1 mx-auto">
         <div

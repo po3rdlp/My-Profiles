@@ -30,14 +30,11 @@
         </div>
       </div>
       <div class="animate__animated animate__bounceInUp">
-        <NuxtLink to="/dashboard"
-          ><a
-            ><h1
-              class="mb-5 text-lg font-bold btn btn-sm btn-ghost hover:bg-none mt-3"
-            >
-              See More Details..
-            </h1></a
-          ></NuxtLink
+        <NuxtLink
+          to="/dashboard"
+          class="mb-5 text-lg font-bold btn btn-sm btn-ghost hover:bg-none mt-3"
+        >
+          See More Details.. ></NuxtLink
         >
       </div>
     </div>

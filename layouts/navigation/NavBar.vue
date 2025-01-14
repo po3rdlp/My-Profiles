@@ -71,6 +71,11 @@
               <NuxtLink :to="link.path">{{ link.name }}</NuxtLink>
             </span>
           </li>
+          <div class="p-3">
+            <NuxtLink to="/">
+              <Icon name="material-symbols-light:arrow-back" size="30px" /> Back
+            </NuxtLink>
+          </div>
         </ul>
       </div>
     </div>
@@ -81,7 +86,6 @@
 const store = useMyStore();
 
 const links = ref([
-  { name: "Home", path: "/" },
   { name: "Dashboard", path: "/dashboard" },
   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },

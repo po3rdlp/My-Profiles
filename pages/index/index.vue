@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute hero min-h-screen">
+  <div class="absolute hero min-h-screen font-sora">
     <div class="hero-content text-center text-neutral-content grid">
       <div class="max-w-5xl animate__animated animate__backInDown">
         <h1
@@ -8,9 +8,7 @@
           Leonard Petter Polandos
         </h1>
         <div class="mb-5 p-2 max-w-3xl">
-          <p
-            class="mb-1 text-base md:text-sm lg:text-lg text-gray-500 dark:text-gray-400 font-semibold"
-          >
+          <p class="mb-1 text-base md:text-sm lg:text-xl text-gray-100">
             Hello! I'm an experienced fullstack web developer, proficient in
             both front-end and back-end technologies. My focus is on crafting
             dynamic web applications that deliver seamless user experiences.
@@ -18,39 +16,21 @@
         </div>
         <div class="flex justify-center gap-5">
           <a href="https://github.com/po3rdlp" target="_blank">
-            <Icon
-              name="material-symbols-light:shield-moon-outline"
-              size="34px"
-            />
-          </a>
-          <a>
-            <Icon
-              name="material-symbols-light:shield-moon-outline"
-              size="34px"
-            />
+            <Icon name="mdi:github" size="34px" />
           </a>
           <a href="https://www.instagram.com/leonpolandos/" target="_blank">
-            <Icon
-              name="material-symbols-light:shield-moon-outline"
-              size="34px"
-            />
+            <Icon name="mdi:instagram" size="34px" />
           </a>
           <a href="https://www.facebook.com/Lpolandos/" target="_blank">
-            <Icon
-              name="material-symbols-light:shield-moon-outline"
-              size="34px"
-            />
+            <Icon name="ic:baseline-facebook" size="34px" />
           </a>
           <a href="https://twitter.com/po3rdlp" target="_blank">
-            <Icon
-              name="material-symbols-light:shield-moon-outline"
-              size="34px"
-            />
+            <Icon name="fa6-brands:square-x-twitter" size="34px" />
           </a>
         </div>
       </div>
       <div class="animate__animated animate__bounceInUp">
-        <RouterLink to="/profile/home"
+        <RouterLink to="/dashboard"
           ><a
             ><h1
               class="mb-5 text-lg font-bold btn btn-sm btn-ghost hover:bg-none mt-3"

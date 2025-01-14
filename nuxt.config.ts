@@ -27,8 +27,7 @@ export default defineNuxtConfig({
     storesDirs: ['./stores/**', './utils/stores/**'],
   },
   particles: {
-    mode: 'full', // 'full' | 'slim' | 'basic' | 'custom'
-    lazy: false
+    mode: 'slim', // 'full' | 'slim' | 'basic' | 'custom'
   },
   devServer: {
     port: 5173,

@@ -51,7 +51,7 @@
                   <div class="w-full">
                     <ul class="grid gap-3">
                       <li
-                        v-for="link in routes"
+                        v-for="link in filteredRoutes"
                         :key="link.name"
                         class="w-full"
                       >
@@ -87,9 +87,17 @@
                     </ul>
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
-                  <p class="text-sm text-center font-thin text-gray-400">
-                    © 2024 By Leonard
-                  </p>
+                  <div class="flex justify-between items-center">
+                    <NuxtLink to="/">
+                      <Icon
+                        name="material-symbols-light:arrow-back"
+                        size="30px"
+                      />
+                    </NuxtLink>
+                    <p class="text-sm text-center font-thin text-gray-400">
+                      © 2024 By Leonard
+                    </p>
+                  </div>
                 </div>
               </div>
             </ul>
@@ -104,6 +112,8 @@
 import routes from "../../utils/routes/route";
 
 const route = useRoute();
+
+const filteredRoutes = routes.filter((route) => route.path !== "/");
 
 const store = useMyStore();
 

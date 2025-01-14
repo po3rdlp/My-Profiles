@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div
-      v-if="!layoutReady"
-      class="bg-slate-200 animate animate-ping w-full h-screen flex justify-center items-center"
-    ></div>
+    <div v-if="!layoutReady"><AtomsStateLoading /></div>
     <div v-else>
       <NuxtLayout :name="currentLayout">
         <NuxtPage />

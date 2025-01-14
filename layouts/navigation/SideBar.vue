@@ -8,7 +8,7 @@
               <div>
                 <div class="p-2">
                   <img
-                    src="../../assets/img/ai_images.jpg"
+                    src="../../assets/img/img_profile.jpg"
                     class="w-36 h-36 rounded-full"
                   />
                 </div>

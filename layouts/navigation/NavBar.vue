@@ -6,10 +6,11 @@
           <div class="flex-1">
             <div class="flex items-center rounded-full">
               <img
-                class="w-12 h-12 rounded-3xl bg-blend-darken object-none"
-                alt="Tailwind CSS Navbar component"
-                src="../../assets/img/ai_images.jpg"
+                class="w-12 h-12 rounded-3xl bg-blend-darken object-cover"
+                alt="Profile image"
+                src="../../assets/img/img_profile.jpg"
               />
+
               <a class="btn btn-ghost text-xl">Polandos</a>
             </div>
           </div>

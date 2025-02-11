@@ -17,7 +17,7 @@
 
 @layer utilities {
   .loading-spinner {
-    @apply w-12 h-12 sm:w-16 sm:h-16 border-4 border-t-blue-300 border-gray-300 rounded-full animate-spin;
+    @apply w-12 h-12 sm:w-16 sm:h-16 border-4 border-t-blue-300 border-slate-100 rounded-full animate-spin;
   }
 }
 </style>

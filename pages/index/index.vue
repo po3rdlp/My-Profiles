@@ -9,9 +9,9 @@
         </h1>
         <div class="mb-5 p-2 max-w-3xl">
           <p class="mb-1 text-base md:text-sm lg:text-xl text-gray-100">
-            Hello! I'm an experienced fullstack web developer, proficient in
-            both front-end and back-end technologies. My focus is on crafting
-            dynamic web applications that deliver seamless user experiences.
+            Hello! I'm an experienced web developer, proficient in both
+            front-end and back-end technologies. My focus is on crafting dynamic
+            web applications that deliver seamless user experiences.
           </p>
         </div>
         <div class="flex justify-center gap-5">

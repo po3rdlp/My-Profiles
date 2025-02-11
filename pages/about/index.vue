@@ -14,9 +14,9 @@
       <h1>
         Leonard Petter,Im a tech enthusiast who's led projects as a server admin
         and project leader at Rsud Dr.Sam Ratulangi Tondano. My skill is on
-        front-end development, with a focus on TypeScript, JavaScript, and Dart.
-        Always hungry for growth, I'm on a quest for new skills and innovations
-        in the tech realm.
+        front-end development, with a focus on TypeScript, JavaScript. Always
+        hungry for growth, I'm on a quest for new skills and innovations in the
+        tech realm.
       </h1>
     </div>
     <div>

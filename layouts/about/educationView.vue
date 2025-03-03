@@ -1,25 +1,24 @@
 <template>
   <div class="animate__animated animate__fadeInDown">
-    <div class="mt-1">
-      <div class="grid grid-cols-1 mx-auto">
-        <div
-          class="card card-side max-w-screen-sm h-full bg-transparent rounded-xl shadow-xl p"
-        >
-          <figure>
-            <img
-              class="w-20 h-16 md:h-10 md:w-10 lg:h-20 lg:w-24 mr-2 object-fill"
-              src="../../assets/img/unklab_logo.png"
-              alt="Movie"
-            />
-          </figure>
-          <div class="">
-            <h2 class="text text-md">UNIVERSITAS KLABAT</h2>
-            <div class="grid">
-              <span class="label text-xs"
-                >Bachelor's degree • INFORMATICS ENGINEERING, (S.KOM)</span
-              >
-              <span class="text-xs">2017-2022</span>
-            </div>
+    <div class="mt-2 flex justify-center">
+      <div
+        class="flex items-center shadow-lg rounded-xl p-4 max-w-screen-sm w-full"
+      >
+        <figure class="flex-shrink-0">
+          <img
+            class="w-20 h-20 md:w-16 md:h-16 lg:w-24 lg:h-24 object-contain"
+            src="../../assets/img/unklab_logo.png"
+            alt="Universitas Klabat"
+          />
+        </figure>
+        <div class="ml-4">
+          <h2 class="text-lg font-semibold text-gray-900">
+            Universitas Klabat
+          </h2>
+          <div class="text-sm text-gray-600">
+            <span>Bachelor's Degree • Informatics Engineering (S.Kom)</span>
+            <br />
+            <span>2017 - 2022</span>
           </div>
         </div>
       </div>

@@ -14,8 +14,8 @@
               <a class="btn btn-ghost text-xl">Polandos</a>
             </div>
           </div>
-          <!-- <div class="flex items-center justify-end gap-3">
-            <div>
+          <div class="flex items-center justify-end gap-3">
+            <!-- <div>
               <button
                 @click="store.toggleWeatherCondition"
                 :class="{
@@ -32,7 +32,7 @@
                   <Icon name="material-symbols-light:sunny" size="34px" />
                 </span>
               </button>
-            </div>
+            </div> -->
             <div>
               <button @click="store.toggleDrawer">
                 <span :class="{ hidden: store.isDrawerOpen === true }">
@@ -45,7 +45,7 @@
                 </span>
               </button>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>

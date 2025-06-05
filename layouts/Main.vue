@@ -4,8 +4,8 @@
     <div class="grid md:grid lg:flex lg:justify-center">
       <div
         :class="{
-          'font-bold text-slate-950': store.selectedTheme === 'acid',
-          'font-bold text-slate-200': store.selectedTheme !== 'acid',
+          'font-bold text-slate-950': store.selectedTheme === 'nord',
+          'font-bold text-slate-200': store.selectedTheme !== 'nord',
         }"
       >
         <div class="hidden lg:block max-w-56 h-full">
@@ -18,8 +18,8 @@
       <div
         class="p-3 md:p-4 lg:p-5 lg:mt-10 font-sora w-full md:w-full lg:max-w-screen-md overflow-x-hidden"
         :class="{
-          'font-bold text-slate-950': store.selectedTheme === 'acid',
-          'font-bold text-slate-200': store.selectedTheme !== 'acid',
+          'font-bold text-slate-950': store.selectedTheme === 'nord',
+          'font-bold text-slate-200': store.selectedTheme !== 'nord',
         }"
       >
         <NuxtLoadingIndicator />

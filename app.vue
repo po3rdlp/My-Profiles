@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <div v-if="!layoutReady"><AtomsStateLoading /></div>
-    <div v-else>
-      <NuxtLayout :name="currentLayout">
-        <NuxtPage />
-      </NuxtLayout>
+  <div v-if="!isAppReady">
+    <AtomsStateLoading />
+  </div>
+
+  <div v-else>
+    <div class="fixed inset-0 -z-50">
+      <ParticlesBackground />
     </div>
+
+    <NuxtLayout :name="currentLayout">
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
@@ -15,9 +20,7 @@ import { useRoute } from "vue-router";
 import "animate.css";
 
 const store = useMyStore();
-const layoutReady = ref(false);
-
-// Reactive route
+const isAppReady = ref(false);
 const route = useRoute();
 
 // Determine current layout
@@ -25,14 +28,19 @@ const currentLayout = computed(() =>
   route.path === "/" ? "landing-page" : "main"
 );
 
-// Initialize the store
-const initializeStore = async () => {
-  await store.initialize();
-  layoutReady.value = true;
+// Initialize everything
+const initializeApp = async () => {
+  try {
+    await store.initialize();
+
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    isAppReady.value = true;
+  } catch (error) {
+    console.error("Initialization failed:", error);
+    isAppReady.value = true;
+  }
 };
 
-// Mount
-onMounted(async () => {
-  await initializeStore();
-});
+onMounted(initializeApp);
 </script>

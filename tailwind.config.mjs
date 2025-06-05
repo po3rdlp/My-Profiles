@@ -15,7 +15,7 @@ export default {
     },
   },
   daisyui: {
-    themes: ["acid", "night"],
+    themes: ["nord", "sunset"],
   },
   plugins: [require("daisyui")],
 };

@@ -24,7 +24,7 @@
                         OPEN FOR COLLABS
                       </p>
                     </div>
-                    <div>
+                    <!-- <div>
                       <button
                         @click="store.toggleWeatherCondition"
                         :class="{
@@ -32,20 +32,20 @@
                             store.weatherCondition,
                         }"
                       >
-                        <span v-if="store.selectedTheme === 'night'">
+                        <span v-if="store.selectedTheme === 'sunset'">
                           <Icon
                             name="material-symbols-light:shield-moon-outline"
                             size="34px"
                           />
                         </span>
-                        <span v-else-if="store.selectedTheme === 'acid'">
+                        <span v-else-if="store.selectedTheme === 'nord'">
                           <Icon
                             name="material-symbols-light:sunny"
                             size="34px"
                           />
                         </span>
                       </button>
-                    </div>
+                    </div> -->
                   </div>
                   <hr class="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
                   <div class="w-full">

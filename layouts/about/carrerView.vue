@@ -17,7 +17,7 @@
 
         <!-- Info -->
         <div class="mt-3">
-          <h2 class="text-lg font-semibold text-gray-900">
+          <h2 class="text-lg font-semibold">
             {{ job.name }}
           </h2>
           <span class="text-sm text-gray-500 block">{{ job.role }}</span>

@@ -12,10 +12,8 @@
           />
         </figure>
         <div class="ml-4">
-          <h2 class="text-lg font-semibold text-gray-900">
-            Universitas Klabat
-          </h2>
-          <div class="text-sm text-gray-600">
+          <h2 class="text-lg font-semibold">Universitas Klabat</h2>
+          <div class="text-sm">
             <span>Bachelor's Degree • Informatics Engineering (S.Kom)</span>
             <br />
             <span>2017 - 2022</span>

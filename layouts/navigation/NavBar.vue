@@ -14,7 +14,7 @@
               <a class="btn btn-ghost text-xl">Polandos</a>
             </div>
           </div>
-          <div class="flex items-center justify-end gap-3">
+          <!-- <div class="flex items-center justify-end gap-3">
             <div>
               <button
                 @click="store.toggleWeatherCondition"
@@ -22,13 +22,13 @@
                   'animate__animated animate__fadeIn': store.weatherCondition,
                 }"
               >
-                <span v-if="store.selectedTheme === 'night'">
+                <span v-if="store.selectedTheme === 'sunset'">
                   <Icon
                     name="material-symbols-light:shield-moon-outline"
                     size="34px"
                   />
                 </span>
-                <span v-else-if="store.selectedTheme === 'acid'">
+                <span v-else-if="store.selectedTheme === 'nord'">
                   <Icon name="material-symbols-light:sunny" size="34px" />
                 </span>
               </button>
@@ -45,7 +45,7 @@
                 </span>
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

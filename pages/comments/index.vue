@@ -31,12 +31,6 @@
           <p class="mr-1 text-sm md:text-lg lg:text-lg font-bold">
             {{ comments.author }}
           </p>
-          <p
-            v-if="comments.author === 'Leonard Petter'"
-            class="mr-1 text-blue-500 text-xs"
-          >
-            (Author)
-          </p>
           <time class="text-xs opacity-50">{{
             DateString(comments.timestamp)
           }}</time>
@@ -85,11 +79,9 @@ const fetchData = () => {
           id: key,
           ...fetchedData[key],
         }));
-        data.value = commentsArray;
-        console.info("SUCCESS TAKING DATA.");
+        data.value = commentsArray.reverse();
       } else {
         data.value = [];
-        console.log(data.value);
       }
       loading.value = false;
     },

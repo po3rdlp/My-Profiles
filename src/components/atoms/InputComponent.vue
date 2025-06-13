@@ -33,7 +33,7 @@ watch(inputValue, (newValue) => {
 watch(
   () => props.modelValue,
   (newValue) => {
-    inputValue.value = newValue; // Sync the internal value with the prop if it changes externally
+    inputValue.value = newValue;
   }
 );
 </script>

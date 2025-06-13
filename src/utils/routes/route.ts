@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/comments', component: () => import('~/pages/comments/index.vue'), name: 'Comments' },
   {
     path: '/playgrounds',
-    component: () => import('~/pages/playgrounds/index.vue'), // List of playgrounds
+    component: () => import('~/pages/playgrounds/index.vue'),
     name: 'Playgrounds',
   }
 ];

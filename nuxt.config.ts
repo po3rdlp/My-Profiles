@@ -16,18 +16,15 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    '@/assets/css/main.css',
+    '@/src/assets/css/main.css',
   ],
   plugins: [
-    { src: '~/plugins/firebase.ts', mode: 'client' },
+    { src: '~/src/plugins/firebase.ts', mode: 'client' },
   ],
   devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', 'nuxt-icon', '@pinia/nuxt', 'nuxt-marquee', 'nuxt-particles'],
   pinia: {
     storesDirs: ['./stores/**', './utils/stores/**'],
-  },
-  particles: {
-    mode: 'slim', // 'full' | 'slim' | 'basic' | 'custom'
   },
   devServer: {
     port: 5173,

@@ -1,5 +1,8 @@
 <template>
-  <div class="absolute hero min-h-screen font-sora">
+  <div>
+    <p>Index Pages</p>
+  </div>
+  <!-- <div class="absolute hero min-h-screen font-sora">
     <div class="hero-content text-center text-neutral-content grid">
       <div class="max-w-5xl animate__animated animate__backInDown">
         <h1
@@ -38,7 +41,7 @@
         </a>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts"></script>

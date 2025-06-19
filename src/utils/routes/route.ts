@@ -1,7 +1,7 @@
 import { type RouteRecordRaw } from "vue-router";
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', component: () => import('~/pages/index/index.vue'), name: 'Home' },
+  { path: '/', component: () => import('~/src/pages/index/index.vue'), name: 'Home' },
   { path: '/dashboard', component: () => import('~/pages/dashboard/index.vue'), name: 'Dashboard' },
   { path: '/about', component: () => import('~/pages/about/index.vue'), name: 'About' },
   { path: '/contact', component: () => import('~/pages/contact/index.vue'), name: 'Contact' },

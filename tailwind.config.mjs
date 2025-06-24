@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [],
+  content: [
+    "./components/**/*.{vue,js,ts}",
+    "./layouts/**/*.{vue,js,ts}",
+    "./pages/**/*.{vue,js,ts}",
+    "./app.vue",
+  ],
   theme: {
     screens: {
       sm: "640px",
@@ -9,13 +14,14 @@ export default {
       xl: "1280px",
       "2xl": "1536px",
     },
-    extend: {},
-    fontFamily: {
-      sora: ["Sora", "sans-serif"],
+    extend: {
+      fontFamily: {
+        inconsolata: ["Inconsolata", "monospace"],
+      },
     },
   },
   daisyui: {
-    themes: ["nord", "sunset"],
+    themes: [],
   },
   plugins: [require("daisyui")],
 };

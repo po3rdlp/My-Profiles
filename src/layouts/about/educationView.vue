@@ -1,9 +1,7 @@
 <template>
   <div class="animate__animated animate__fadeInDown">
-    <div class="mt-2 flex justify-center">
-      <div
-        class="flex items-center shadow-lg rounded-xl p-4 max-w-screen-sm w-full"
-      >
+    <div class="mt-2 flex">
+      <div class="flex items-center shadow-lg rounded-xl p-4 w-full">
         <figure class="flex-shrink-0">
           <img
             class="w-20 h-20 md:w-16 md:h-16 lg:w-24 lg:h-24 object-contain"

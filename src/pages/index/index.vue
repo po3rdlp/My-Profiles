@@ -1,10 +1,8 @@
 <template>
-  <div class="w-full grid items-center scroll-smooth">
-    <section id="index1" class="w-full h-screen">
-      <div class="font-sans">This uses Nunito</div>
-      <div class="font-mono">This uses Roboto</div>
-      <p class="inconsolata">Hello Inconsolata</p>
-    </section>
+  <div class="w-full grid items-center scroll-smooth inconsolata">
+    <div>
+      <About />
+    </div>
     <section id="index2" class="w-full h-screen">
       <p>Index2 Pages</p>
     </section>
@@ -14,4 +12,6 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import About from "../about/about.vue";
+</script>

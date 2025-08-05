@@ -3,17 +3,17 @@
     class="fixed top-5 left-5 w-2/6 z-50 h-screen rounded-r flex flex-col gap-4 font-bold inconsolata"
   >
     <div class="">
-      <p class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+      <p class="text-4xl font-bold tracking-tight sm:text-5xl">
         Leonard Petter
       </p>
-      <p class="tracking-tight text-slate-200">Front End Engineer</p>
+      <p class="tracking-tight">Front End Engineer</p>
       <p class="break-words whitespace-normal w-full max-w-xs">
         I build accessible, pixel-perfect digital experiences for the web.
       </p>
     </div>
 
     <!-- Anchor link -->
-    <div class="grid items-center gap-2 p-4 no-underline">
+    <div class="grid items-center gap-2 p-4 no-underline w-fit text-">
       <a
         href="#index1"
         :class="activeSection === 'index1' ? activeClass : defaultClass"
@@ -31,19 +31,35 @@
       >
     </div>
 
-    <div class="p-4">
+    <div class="p-4 w-fit">
       <div class="flex gap-3">
         <a href="https://github.com/po3rdlp" target="_blank">
-          <Icon name="mdi:github" size="34px" />
+          <Icon
+            name="mdi:github"
+            size="34px"
+            class="text-gray-300 hover:size-9"
+          />
         </a>
         <a href="https://www.instagram.com/leonpolandos/" target="_blank">
-          <Icon name="mdi:instagram" size="34px" />
+          <Icon
+            name="mdi:instagram"
+            size="34px"
+            class="text-gray-300 hover:size-9"
+          />
         </a>
         <a href="https://www.facebook.com/Lpolandos/" target="_blank">
-          <Icon name="ic:baseline-facebook" size="34px" />
+          <Icon
+            name="ic:baseline-facebook"
+            size="34px"
+            class="text-gray-300 hover:size-9"
+          />
         </a>
         <a href="https://twitter.com/po3rdlp" target="_blank">
-          <Icon name="fa6-brands:square-x-twitter" size="34px" />
+          <Icon
+            name="fa6-brands:square-x-twitter"
+            size="34px"
+            class="text-gray-300 hover:size-9"
+          />
         </a>
       </div>
     </div>
@@ -54,7 +70,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 
 const activeSection = ref("");
-const defaultClass = "transition-all duration-200 !no-underline";
+const defaultClass = "transition-all duration-200 !no-underline text-info";
 const activeClass =
   "font-semibold transition-all text-3xl dration-200 !no-underline";
 

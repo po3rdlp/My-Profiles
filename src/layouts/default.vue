@@ -4,10 +4,10 @@ import SideBar from "./navigation/SideBar.vue";
 
 <template>
   <div
-    class="fixed top-0 left-0 w-full z-50 p-1 bg-base-200 text-md text-white text-center sh"
+    class="fixed top-0 left-0 w-full z-50 bg-base-200 text-md text-white text-center sh"
   >
     <p
-      class="mt-1 flex items-center justify-center gap-2 text-gray-700 dark:text-gray-300"
+      class="flex items-center justify-center gap-2 text-gray-700 dark:text-gray-300"
     >
     <div class="grid items-center">
       <span class="font-bold items-center">
@@ -27,7 +27,7 @@ import SideBar from "./navigation/SideBar.vue";
     <div class="hidden lg:block">
       <SideBar />
     </div>
-    <div class="lg:ml-[33.333%] w-full mt-14 lg:mt-15">
+    <div class="lg:ml-[33.333%] w-full mt-16 lg:mt-15">
       <slot />
     </div>
   </div>

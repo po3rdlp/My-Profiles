@@ -3,15 +3,17 @@
     <div>
       <About />
     </div>
-    <section id="index2" class="w-full h-screen">
-      <p>Index2 Pages</p>
-    </section>
-    <section id="index3" class="w-full h-screen">
-      <p>Index3 Pages</p>
-    </section>
+    <div class="">
+      <exp />
+    </div>
+    <div class="">
+      <Projects />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import About from "../about/about.vue";
+import exp from "../experience/exp.vue";
+import Projects from "../projects/projects.vue";
 </script>

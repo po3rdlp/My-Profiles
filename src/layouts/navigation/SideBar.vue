@@ -1,6 +1,6 @@
 <template>
   <div
-    class="fixed top-5 left-5 w-2/6 z-50 h-screen rounded-r flex flex-col gap-4 font-bold inconsolata"
+    class="fixed top-20 left-5 w-2/6 z-50 h-screen rounded-r flex flex-col gap-4 font-bold inconsolata"
   >
     <div class="">
       <p class="text-4xl font-bold tracking-tight sm:text-5xl">
@@ -15,18 +15,18 @@
     <!-- Anchor link -->
     <div class="grid items-center gap-2 p-4 no-underline w-fit text-">
       <a
-        href="#index1"
-        :class="activeSection === 'index1' ? activeClass : defaultClass"
+        href="#about"
+        :class="activeSection === 'about' ? activeClass : defaultClass"
         >About</a
       >
       <a
-        href="#index2"
-        :class="activeSection === 'index2' ? activeClass : defaultClass"
+        href="#experience"
+        :class="activeSection === 'experience' ? activeClass : defaultClass"
         >Experience</a
       >
       <a
-        href="#index3"
-        :class="activeSection === 'index3' ? activeClass : defaultClass"
+        href="#projects"
+        :class="activeSection === 'projects' ? activeClass : defaultClass"
         >Projects</a
       >
     </div>
@@ -75,7 +75,7 @@ const activeClass =
   "font-semibold transition-all text-3xl dration-200 !no-underline";
 
 const updateActiveSection = () => {
-  const sections = ["index1", "index2", "index3"];
+  const sections = ["about", "experience", "projects"];
   const scrollPosition = window.scrollY + 100;
 
   for (const id of sections) {

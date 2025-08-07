@@ -10,8 +10,8 @@ import SideBar from "./navigation/SideBar.vue";
       class="mt-1 flex items-center justify-center gap-2 text-gray-700 dark:text-gray-300"
     >
     <div class="grid items-center">
-      <span class="flex items-center gap-1.5 animate-pulse">
-        🛠️ V2 Portfolio in progress
+      <span class="font-bold items-center">
+      V2 Portfolio in progress
       </span>
       <span>Thank you for stopping by!</span>
     </div>

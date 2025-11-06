@@ -4,29 +4,31 @@
       <div
         v-for="job in jobs"
         :key="job.name"
-        class="bg-gradient-to-br from-[#a2b1c8] to-[#54667d] rounded-xl p-4 md:p-6 opacity-85 shadow-lg md:shadow-2xl hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 border border-black"
+        class="bg-gradient-to-br from-base-200 to-base-300 rounded-xl p-4 md:p-6 opacity-95 shadow-lg md:shadow-2xl hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 border border-base-content/10"
       >
         <!-- Header -->
         <div
-          class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 md:mb-6"
+          class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4 mb-4 md:mb-6 text-center sm:text-left"
         >
           <img
             :src="job.logo"
             :alt="job.name"
-            class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain rounded-lg bg-white p-1 sm:p-2 shadow-sm border border-[#e5e7eb] self-center sm:self-auto"
+            class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 object-contain rounded-lg bg-base-100 p-1 sm:p-2 shadow-sm border border-base-300"
           />
-          <div class="text-center sm:text-left">
-            <h2 class="text-lg sm:text-xl font-bold text-[#1f2937]">
+
+          <div class="flex flex-col justify-center sm:justify-start">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-100">
               {{ job.name }}
             </h2>
+
             <div
-              class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mt-1"
+              class="grid sm:flex-row sm:items-center justify-center sm:justify-start gap-1 sm:gap-3 mt-1"
             >
-              <p class="text-xs sm:text-sm text-[#2563eb] font-medium">
+              <p class="text-xs sm:text-sm text-[#60a5fa] font-medium">
                 {{ job.role }}
               </p>
               <span
-                class="text-xs text-[#4b5563] bg-[#f3f4f6] px-2 py-1 rounded-full self-center sm:self-auto"
+                class="text-xs text-gray-300 bg-base-100/20 px-2 py-1 rounded-full border border-base-300"
               >
                 {{ job.duration }}
               </span>
@@ -38,7 +40,7 @@
         <div class="space-y-3 md:space-y-5">
           <div v-for="(roleGroup, groupIndex) in job.do" :key="groupIndex">
             <h3
-              class="font-bold text-[#1f2937] mb-2 md:mb-4 pb-1 md:pb-2 border-b border-[#e5e7eb] text-sm md:text-base"
+              class="font-bold text-gray-100 mb-2 md:mb-4 pb-1 md:pb-2 border-b border-base-300 text-sm md:text-base"
             >
               {{ roleGroup.title }}
             </h3>
@@ -46,10 +48,10 @@
               <div
                 v-for="(role, roleIndex) in roleGroup.roles"
                 :key="roleIndex"
-                class="p-2 sm:p-3 md:p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-[#3b82f6] hover:bg-[#f5f7fa]"
+                class="p-2 sm:p-3 md:p-4 bg-base-100/10 rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-[#818cf8] hover:bg-base-100/20"
               >
                 <h4
-                  class="font-semibold text-[#1f2937] mb-1 md:mb-2 flex items-center gap-2 text-sm md:text-base"
+                  class="font-semibold text-gray-100 mb-1 md:mb-2 flex items-center gap-2 text-sm md:text-base"
                 >
                   {{ role.title }}
                 </h4>
@@ -57,9 +59,9 @@
                   <li
                     v-for="(item, itemIndex) in role.items"
                     :key="itemIndex"
-                    class="flex items-start gap-2 text-xs sm:text-sm text-[#4b5563]"
+                    class="flex items-start gap-2 text-xs sm:text-sm text-gray-300"
                   >
-                    <span class="text-[#3b82f6]">•</span>
+                    <span class="text-[#60a5fa]">•</span>
                     <span>{{ item }}</span>
                   </li>
                 </ul>
@@ -163,9 +165,9 @@ const jobs = [
           {
             title: "POS System Development",
             items: [
-              "Created custom POS with barcode scanning functionality",
-              "Reduced checkout time by 30% for retail operations",
-              "Developed real-time sales analytics dashboard",
+              "Developed enterprise-grade POS with supplier and inventory modules",
+              "Implemented invoicing and batch tracking for procurement flow",
+              "Built analytics dashboard for real-time operational insights",
             ],
           },
         ],

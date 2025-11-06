@@ -1,6 +1,6 @@
 <template>
   <div class="w-full grid items-center scroll-smooth inconsolata">
-    <div>
+    <div class="-mt-11">
       <About />
     </div>
     <div class="">

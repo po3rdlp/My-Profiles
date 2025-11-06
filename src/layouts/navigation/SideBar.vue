@@ -10,9 +10,9 @@
       <p class="break-words whitespace-normal w-full max-w-xs">
         I build accessible, pixel-perfect digital experiences for the web.
       </p>
+      <a href="/git">See My Github Contributions</a>
     </div>
 
-    <!-- Anchor link -->
     <div class="grid items-center gap-2 p-4 no-underline w-fit text-">
       <a
         href="#about"

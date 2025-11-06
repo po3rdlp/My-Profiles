@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import SideBar from "./navigation/SideBar.vue";
 import UpperBar from "./navigation/UpperBar.vue";
+import { SpeedInsights } from "@vercel/speed-insights/vue";
 
 const route = useRoute();
 
@@ -11,6 +12,7 @@ const hideSidebar = computed(() => noSidebarPages.includes(route.path));
 
 <template>
   <div data-theme="night">
+    <SpeedInsights />
     <div
       v-if="!hideSidebar"
       class="block lg:hidden absolute top-0 left-0 right-0 z-50"

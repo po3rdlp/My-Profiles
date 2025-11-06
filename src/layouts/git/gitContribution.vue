@@ -1,9 +1,18 @@
 <template>
   <div class="h-screen p-4 bg-gray-900 text-white">
     <div v-if="data" class="mb-3">
-      <p class="flex items-center gap-2 font-semibold text-lg">
+      <div class="flex items-center gap-1 mb-4">
+        <a href="/" class="hover:bg-blue-200 rounded-lg"
+          ><Icon
+            name="material-symbols:arrow-back-2"
+            width="26"
+            height="26"
+          ></Icon
+        ></a>
+
         <Icon name="mdi:github" size="30" /> Contributions
-      </p>
+      </div>
+
       <div
         class="flex justify-between mt-1 text-sm font-semibold text-gray-400"
       >
@@ -29,7 +38,7 @@
 
     <div
       v-if="data"
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"
+      class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"
     >
       <div
         class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center"
@@ -233,36 +242,6 @@ const optimizedMonthLabels = computed(() => {
   }
 
   return monthLabels;
-});
-
-// Alternative simpler month labels approach
-const simpleMonthLabels = computed(() => {
-  if (!data.value) return [];
-
-  const weeks =
-    data.value.user.contributionsCollection.contributionCalendar.weeks;
-  const labels: string[] = [];
-  const monthPositions: number[] = [];
-
-  let lastMonth = "";
-
-  // Find positions where month changes
-  weeks.forEach((week: any, index: number) => {
-    if (week.contributionDays.length > 0) {
-      const firstDay = week.contributionDays[0];
-      const month = new Date(firstDay.date).toLocaleString("default", {
-        month: "short",
-      });
-
-      if (month !== lastMonth) {
-        labels.push(month);
-        monthPositions.push(index);
-        lastMonth = month;
-      }
-    }
-  });
-
-  return labels;
 });
 
 const getGitContribution = async () => {

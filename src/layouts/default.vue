@@ -13,7 +13,7 @@ const hideSidebar = computed(() => noSidebarPages.includes(route.path));
   <div data-theme="night">
     <div
       v-if="!hideSidebar"
-      class="block lg:hidden fixed top-0 left-0 right-0 z-50"
+      class="block lg:hidden absolute top-0 left-0 right-0 z-50"
     >
       <UpperBar />
     </div>

@@ -41,7 +41,8 @@
       class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"
     >
       <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center"
+        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
+        style="animation-delay: 0.1s"
       >
         <span class="text-sm">Total</span>
         <span class="text-xl font-bold">
@@ -52,13 +53,15 @@
         </span>
       </div>
       <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center"
+        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
+        style="animation-delay: 0.2s"
       >
         <span class="text-sm">This Month</span>
         <span class="text-xl font-bold">{{ totalContributionsThisMonth }}</span>
       </div>
       <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center"
+        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
+        style="animation-delay: 0.3s"
       >
         <span class="text-sm">Best Day</span>
         <span class="text-xl font-bold">{{
@@ -66,7 +69,8 @@
         }}</span>
       </div>
       <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center"
+        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
+        style="animation-delay: 0.4s"
       >
         <span class="text-sm">Average</span>
         <span class="text-xl font-bold">{{
@@ -85,11 +89,12 @@
         <div
           v-for="(monthLabel, index) in optimizedMonthLabels"
           :key="index"
-          class="text-xs text-gray-400 font-medium"
+          class="text-xs text-gray-400 font-medium month-label"
           :style="{
             width: `${monthLabel.width}px`,
             textAlign: 'left',
             paddingLeft: '4px',
+            animationDelay: `${index * 0.05}s`,
           }"
         >
           {{ monthLabel.name }}
@@ -102,7 +107,8 @@
           <div
             v-for="(weekday, idx) in ['', 'Mon', '', 'Wed', '', 'Fri', '']"
             :key="idx"
-            class="w-6 h-6 text-xs text-gray-400 flex items-center justify-center"
+            class="w-6 h-6 text-xs text-gray-400 flex items-center justify-center weekday-label"
+            :style="{ animationDelay: `${idx * 0.05}s` }"
           >
             {{ weekday }}
           </div>
@@ -111,22 +117,28 @@
         <!-- Calendar Grid -->
         <div class="flex space-x-1">
           <div
-            v-for="(week, index) in data.user.contributionsCollection
+            v-for="(week, weekIndex) in data.user.contributionsCollection
               .contributionCalendar.weeks"
-            :key="index"
+            :key="weekIndex"
             class="flex flex-col space-y-1"
           >
             <div
-              v-for="(day, idx) in week.contributionDays"
-              :key="idx"
-              class="w-6 h-6 rounded-sm transition-all duration-200 hover:scale-110 cursor-pointer"
-              :class="{
-                'bg-green-500': day.contributionCount >= 10,
-                'bg-green-400':
-                  day.contributionCount >= 5 && day.contributionCount < 10,
-                'bg-green-300':
-                  day.contributionCount > 0 && day.contributionCount < 5,
-                'bg-gray-700': day.contributionCount === 0,
+              v-for="(day, dayIndex) in week.contributionDays"
+              :key="dayIndex"
+              class="w-6 h-6 rounded-sm transition-all duration-150 hover:scale-125 cursor-pointer contribution-day"
+              :class="[
+                {
+                  'bg-green-500': day.contributionCount >= 10,
+                  'bg-green-400':
+                    day.contributionCount >= 5 && day.contributionCount < 10,
+                  'bg-green-300':
+                    day.contributionCount > 0 && day.contributionCount < 5,
+                  'bg-gray-700': day.contributionCount === 0,
+                },
+                `animation-type-${(weekIndex + dayIndex) % 6}`,
+              ]"
+              :style="{
+                animationDelay: `${(weekIndex * 7 + dayIndex) * 0.01}s`,
               }"
               :title="
                 day.date + ': ' + day.contributionCount + ' contributions'
@@ -143,28 +155,28 @@
 
     <!-- Legend and Hover Info -->
     <div v-if="data" class="flex justify-between items-center mt-2 text-sm">
-      <div class="flex items-center gap-1">
+      <div
+        class="flex items-center gap-1 legend-item"
+        style="animation-delay: 0.5s"
+      >
         <span>Less</span>
         <div
-          v-for="datas in color"
+          v-for="(datas, index) in color"
           :key="datas.hex"
-          :style="{ backgroundColor: datas.hex }"
-          class="w-4 h-4 rounded-sm"
+          :style="{
+            backgroundColor: datas.hex,
+            animationDelay: `${0.6 + index * 0.1}s`,
+          }"
+          class="w-4 h-4 rounded-sm color-swatch"
         ></div>
         <span>More</span>
-      </div>
-      <div
-        v-if="hoveredContributionCount !== null"
-        class="bg-gray-700 text-white px-2 py-1 rounded-lg shadow-md"
-      >
-        {{ hoveredContributionCount }} Contributions on {{ hoveredDate }}
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed } from "vue";
+import { ref, onMounted, computed, nextTick } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
 import { apiGit } from "~/services/api/api.config";
 import getMonthName from "~/utils/date/dateMonth";
@@ -192,7 +204,7 @@ const calendarWidth = computed(() => {
   if (!data.value) return 0;
   const weeks =
     data.value.user.contributionsCollection.contributionCalendar.weeks;
-  return weeks.length * 26; // 24px (w-6) + 2px (space-x-1)
+  return weeks.length * 26;
 });
 
 // Compute optimized month labels
@@ -215,15 +227,13 @@ const optimizedMonthLabels = computed(() => {
       });
 
       if (month !== currentMonth) {
-        // Save previous month if exists
         if (currentMonth !== "" && monthWeekCount > 0) {
           monthLabels.push({
             name: currentMonth,
-            width: monthWeekCount * 26, // 24px + 2px spacing
+            width: monthWeekCount * 26,
           });
         }
 
-        // Start new month
         currentMonth = month;
         monthStartIndex = weekIndex;
         monthWeekCount = 1;
@@ -233,7 +243,6 @@ const optimizedMonthLabels = computed(() => {
     }
   });
 
-  // Add the last month
   if (currentMonth !== "" && monthWeekCount > 0) {
     monthLabels.push({
       name: currentMonth,
@@ -306,6 +315,18 @@ const getGitContribution = async () => {
       0
     );
     averageContributions.value = thisYearTotalContributions / daysInYear;
+
+    // Trigger animation after data is loaded
+    nextTick(() => {
+      setTimeout(() => {
+        const elements = document.querySelectorAll(
+          ".stats-card, .contribution-day, .month-label, .weekday-label, .legend-item, .color-swatch"
+        );
+        elements.forEach((el) => {
+          el.classList.add("animate-in");
+        });
+      }, 50);
+    });
   } catch (err) {
     console.error("Failed to fetch GitHub contributions:", err);
   }
@@ -322,3 +343,225 @@ const hideContributionCount = () => {
 
 onMounted(() => getGitContribution());
 </script>
+
+<style scoped>
+/* Base animation styles */
+.stats-card,
+.contribution-day,
+.month-label,
+.weekday-label,
+.legend-item,
+.color-swatch,
+.hover-info {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-play-state: paused;
+}
+
+.animate-in {
+  animation-play-state: running;
+}
+
+/* Stats cards animation */
+.stats-card {
+  animation-name: slideUpFade;
+}
+
+/* Month and weekday labels */
+.month-label {
+  animation-name: fadeInDown;
+}
+
+.weekday-label {
+  animation-name: fadeInRight;
+}
+
+/* Legend items */
+.legend-item {
+  animation-name: fadeInUp;
+}
+
+.color-swatch {
+  animation-name: bounceIn;
+  display: inline-block;
+}
+
+.hover-info {
+  animation-name: scaleIn;
+}
+
+/* Multiple animation types for contribution days */
+.contribution-day.animation-type-0 {
+  animation-name: zoomIn;
+}
+
+.contribution-day.animation-type-1 {
+  animation-name: flipInX;
+}
+
+.contribution-day.animation-type-2 {
+  animation-name: bounceIn;
+}
+
+.contribution-day.animation-type-3 {
+  animation-name: rotateIn;
+}
+
+.contribution-day.animation-type-4 {
+  animation-name: slideInUp;
+}
+
+.contribution-day.animation-type-5 {
+  animation-name: pulseIn;
+}
+
+/* Animation Definitions */
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes flipInX {
+  0% {
+    opacity: 0;
+    transform: perspective(400px) rotateX(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(400px) rotateX(0deg);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-180deg) scale(0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hover effects enhancement */
+.contribution-day:hover {
+  transform: scale(1.25);
+  z-index: 10;
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Stats cards hover effect */
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+</style>

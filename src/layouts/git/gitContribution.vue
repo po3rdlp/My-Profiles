@@ -1,15 +1,11 @@
 <template>
   <div class="h-screen p-4 bg-gray-900 text-white">
+    <!-- HEADER -->
     <div v-if="data" class="mb-3">
       <div class="flex items-center gap-1 mb-4">
-        <a href="/" class="hover:bg-blue-200 rounded-lg"
-          ><Icon
-            name="material-symbols:arrow-back-2"
-            width="26"
-            height="26"
-          ></Icon
-        ></a>
-
+        <a href="/" class="hover:bg-blue-200 rounded-lg">
+          <Icon name="material-symbols:arrow-back-2" width="26" height="26" />
+        </a>
         <Icon name="mdi:github" size="30" /> Contributions
       </div>
 
@@ -21,29 +17,48 @@
           href="https://github.com/po3rdlp"
           target="_blank"
           class="hover:underline"
-          >@po3rdlp</a
         >
+          @po3rdlp
+        </a>
       </div>
     </div>
 
+    <!-- LOADING -->
     <div
-      v-if="!data"
+      v-if="!data && !isError"
       class="flex flex-col justify-center items-center gap-4 py-44"
     >
-      <span class="animate-pulse text-white text-lg"
-        >Loading Contributions ....</span
-      >
-      <span class="flex justify-center loading loading-bars loading-xl"></span>
+      <span class="animate-pulse text-lg"> Loading Contributions .... </span>
+      <span class="loading loading-bars loading-xl"></span>
     </div>
 
+    <!-- ERROR -->
     <div
-      v-if="data"
-      class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6"
+      v-if="isError"
+      class="flex flex-col justify-center items-center gap-3 py-44 text-red-400"
     >
-      <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
-        style="animation-delay: 0.1s"
+      <span class="text-2xl font-semibold">Error</span>
+      <span class="text-sm text-center text-gray-400">
+        Failed to load GitHub contributions, Try Again Later
+      </span>
+      <button
+        class="mt-3 px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg text-white"
+        @click="getGitContribution"
       >
+        Retry
+      </button>
+
+      <NuxtLink
+        to="/"
+        class="mt-2 px-4 py-2 bg-none rounded-lg text-white text-center"
+      >
+        Back
+      </NuxtLink>
+    </div>
+
+    <!-- STATS -->
+    <div v-if="data" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div class="stats-card">
         <span class="text-sm">Total</span>
         <span class="text-xl font-bold">
           {{
@@ -52,131 +67,63 @@
           }}
         </span>
       </div>
-      <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
-        style="animation-delay: 0.2s"
-      >
+
+      <div class="stats-card">
         <span class="text-sm">This Month</span>
-        <span class="text-xl font-bold">{{ totalContributionsThisMonth }}</span>
+        <span class="text-xl font-bold">
+          {{ totalContributionsThisMonth }}
+        </span>
       </div>
-      <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
-        style="animation-delay: 0.3s"
-      >
+
+      <div class="stats-card">
         <span class="text-sm">Best Day</span>
-        <span class="text-xl font-bold">{{
-          bestDay?.contributionCount ?? 0
-        }}</span>
+        <span class="text-xl font-bold">
+          {{ bestDay?.contributionCount ?? 0 }}
+        </span>
       </div>
-      <div
-        class="p-4 bg-gray-800 text-white shadow-lg rounded-2xl flex flex-col items-center stats-card"
-        style="animation-delay: 0.4s"
-      >
+
+      <div class="stats-card">
         <span class="text-sm">Average</span>
-        <span class="text-xl font-bold">{{
-          Math.floor(averageContributions)
-        }}</span>
+        <span class="text-xl font-bold">
+          {{ Math.floor(averageContributions) }}
+        </span>
       </div>
     </div>
 
-    <!-- Contribution Calendar -->
+    <!-- CALENDAR -->
     <div
       v-if="data"
-      class="overflow-x-auto py-3 px-1 bg-gray-900 rounded-xl shadow-inner mb-4"
+      class="overflow-x-auto py-3 px-1 bg-gray-900 rounded-xl shadow-inner"
     >
-      <!-- Month Labels -->
-      <div class="flex mb-1 ml-7" :style="{ width: `${calendarWidth}px` }">
-        <div
-          v-for="(monthLabel, index) in optimizedMonthLabels"
-          :key="index"
-          class="text-xs text-gray-400 font-medium month-label"
-          :style="{
-            width: `${monthLabel.width}px`,
-            textAlign: 'left',
-            paddingLeft: '4px',
-            animationDelay: `${index * 0.05}s`,
-          }"
-        >
-          {{ monthLabel.name }}
-        </div>
-      </div>
-
       <div class="flex">
-        <!-- Weekday Labels -->
-        <div class="flex flex-col space-y-1 mr-1">
-          <div
-            v-for="(weekday, idx) in ['', 'Mon', '', 'Wed', '', 'Fri', '']"
-            :key="idx"
-            class="w-6 h-6 text-xs text-gray-400 flex items-center justify-center weekday-label"
-            :style="{ animationDelay: `${idx * 0.05}s` }"
-          >
-            {{ weekday }}
-          </div>
-        </div>
-
-        <!-- Calendar Grid -->
-        <div class="flex space-x-1">
-          <div
-            v-for="(week, weekIndex) in data.user.contributionsCollection
-              .contributionCalendar.weeks"
-            :key="weekIndex"
-            class="flex flex-col space-y-1"
-          >
-            <div
-              v-for="(day, dayIndex) in week.contributionDays"
-              :key="dayIndex"
-              class="w-6 h-6 rounded-sm transition-all duration-150 hover:scale-125 cursor-pointer contribution-day"
-              :class="[
-                {
-                  'bg-green-500': day.contributionCount >= 10,
-                  'bg-green-400':
-                    day.contributionCount >= 5 && day.contributionCount < 10,
-                  'bg-green-300':
-                    day.contributionCount > 0 && day.contributionCount < 5,
-                  'bg-gray-700': day.contributionCount === 0,
-                },
-                `animation-type-${(weekIndex + dayIndex) % 6}`,
-              ]"
-              :style="{
-                animationDelay: `${(weekIndex * 7 + dayIndex) * 0.01}s`,
-              }"
-              :title="
-                day.date + ': ' + day.contributionCount + ' contributions'
-              "
-              @mouseenter="
-                showContributionCount(day.contributionCount, day.date)
-              "
-              @mouseleave="hideContributionCount"
-            ></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Legend and Hover Info -->
-    <div v-if="data" class="flex justify-between items-center mt-2 text-sm">
-      <div
-        class="flex items-center gap-1 legend-item"
-        style="animation-delay: 0.5s"
-      >
-        <span>Less</span>
         <div
-          v-for="(datas, index) in color"
-          :key="datas.hex"
-          :style="{
-            backgroundColor: datas.hex,
-            animationDelay: `${0.6 + index * 0.1}s`,
-          }"
-          class="w-4 h-4 rounded-sm color-swatch"
-        ></div>
-        <span>More</span>
+          v-for="(week, wi) in data.user.contributionsCollection
+            .contributionCalendar.weeks"
+          :key="wi"
+          class="flex flex-col space-y-1 mr-1"
+        >
+          <div
+            v-for="(day, di) in week.contributionDays"
+            :key="di"
+            class="w-6 h-6 rounded-sm contribution-day"
+            :class="{
+              'bg-green-500': day.contributionCount >= 10,
+              'bg-green-400':
+                day.contributionCount >= 5 && day.contributionCount < 10,
+              'bg-green-300':
+                day.contributionCount > 0 && day.contributionCount < 5,
+              'bg-gray-700': day.contributionCount === 0,
+            }"
+            :title="`${day.date} : ${day.contributionCount} contributions`"
+          ></div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, nextTick } from "vue";
+import { ref, onMounted } from "vue";
 import { useRuntimeConfig } from "nuxt/app";
 import { apiGit } from "~/services/api/api.config";
 import getMonthName from "~/utils/date/dateMonth";
@@ -185,163 +132,90 @@ const config = useRuntimeConfig();
 const userName = "po3rdlp";
 const token = config.public.GH_TOKEN;
 
+const data = ref<any>(null);
+const isError = ref(false);
+
+const totalContributionsThisMonth = ref(0);
+const bestDay = ref<any>(null);
+const averageContributions = ref(0);
+const weekContribution = ref<any[]>([]);
+
 const now = new Date();
 const currentMonth = now.toLocaleString("default", { month: "short" });
 const currentYear = now.getFullYear();
 
-const data = ref<any>(null);
-const totalContributionsThisMonth = ref<number>(0);
-const bestDay = ref<any>(null);
-const averageContributions = ref<number>(0);
-const weekContribution = ref<any>(null);
-const color = ref<any[]>([]);
-
-const hoveredDate = ref<string | null>(null);
-const hoveredContributionCount = ref<number | null>(null);
-
-// Compute calendar width
-const calendarWidth = computed(() => {
-  if (!data.value) return 0;
-  const weeks =
-    data.value.user.contributionsCollection.contributionCalendar.weeks;
-  return weeks.length * 26;
-});
-
-// Compute optimized month labels
-const optimizedMonthLabels = computed(() => {
-  if (!data.value) return [];
-
-  const weeks =
-    data.value.user.contributionsCollection.contributionCalendar.weeks;
-  const monthLabels: Array<{ name: string; width: number }> = [];
-
-  let currentMonth = "";
-  let monthStartIndex = 0;
-  let monthWeekCount = 0;
-
-  weeks.forEach((week: any, weekIndex: number) => {
-    if (week.contributionDays.length > 0) {
-      const firstDay = week.contributionDays[0];
-      const month = new Date(firstDay.date).toLocaleString("default", {
-        month: "short",
-      });
-
-      if (month !== currentMonth) {
-        if (currentMonth !== "" && monthWeekCount > 0) {
-          monthLabels.push({
-            name: currentMonth,
-            width: monthWeekCount * 26,
-          });
-        }
-
-        currentMonth = month;
-        monthStartIndex = weekIndex;
-        monthWeekCount = 1;
-      } else {
-        monthWeekCount++;
-      }
-    }
-  });
-
-  if (currentMonth !== "" && monthWeekCount > 0) {
-    monthLabels.push({
-      name: currentMonth,
-      width: monthWeekCount * 26,
-    });
-  }
-
-  return monthLabels;
-});
-
 const getGitContribution = async () => {
-  const headers = { Authorization: `Bearer ${token}` };
-  const body = {
-    query: `query {
-      user(login: "${userName}") {
-        name
-        contributionsCollection {
-          contributionCalendar {
-            colors
-            totalContributions
-            weeks {
-              contributionDays {
-                color
-                contributionCount
-                date
-                weekday
-              }
-              firstDay
-            }
-          }
-        }
-      }
-    }`,
-  };
+  isError.value = false;
+  data.value = null;
 
   try {
-    const response = await apiGit.post("graphql", body, { headers });
+    const response = await apiGit.post(
+      "graphql",
+      {
+        query: `
+          query {
+            user(login: "${userName}") {
+              contributionsCollection {
+                contributionCalendar {
+                  totalContributions
+                  weeks {
+                    contributionDays {
+                      contributionCount
+                      date
+                    }
+                  }
+                }
+              }
+            }
+          }
+        `,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    if (!response?.data?.data) {
+      throw new Error("Invalid response");
+    }
+
     data.value = response.data.data;
+
     weekContribution.value =
-      data.value?.user?.contributionsCollection?.contributionCalendar?.weeks ??
-      [];
+      data.value.user.contributionsCollection.contributionCalendar.weeks;
 
-    const colors =
-      data.value?.user?.contributionsCollection?.contributionCalendar?.colors ??
-      [];
-    color.value = colors.map((hex: string) => ({ hex }));
+    const allDays = weekContribution.value.flatMap(
+      (week) => week.contributionDays
+    );
 
-    const currentYearContributions = weekContribution.value
-      .flatMap((week: any) => week.contributionDays)
-      .filter((day: any) => new Date(day.date).getFullYear() === currentYear);
+    const currentYearDays = allDays.filter(
+      (day) => new Date(day.date).getFullYear() === currentYear
+    );
 
-    const currentMonthContributions = weekContribution.value
-      .flatMap((week: any) => week.contributionDays)
-      .filter((day: any) => getMonthName(day.date) === currentMonth);
+    const currentMonthDays = allDays.filter(
+      (day) => getMonthName(day.date) === currentMonth
+    );
 
-    totalContributionsThisMonth.value = currentMonthContributions.reduce(
-      (total: number, day: any) => total + day.contributionCount,
+    totalContributionsThisMonth.value = currentMonthDays.reduce(
+      (a, b) => a + b.contributionCount,
       0
     );
 
-    bestDay.value = currentYearContributions.reduce((best: any, day: any) => {
-      return day.contributionCount > (best?.contributionCount ?? 0)
-        ? day
-        : best;
-    }, null);
-
-    const daysInYear = new Date(currentYear, 11, 31).getDate();
-    const thisYearTotalContributions = currentYearContributions.reduce(
-      (total: number, day: any) => total + day.contributionCount,
-      0
+    bestDay.value = currentYearDays.reduce(
+      (best, day) =>
+        day.contributionCount > (best?.contributionCount ?? 0) ? day : best,
+      null
     );
-    averageContributions.value = thisYearTotalContributions / daysInYear;
 
-    // Trigger animation after data is loaded
-    nextTick(() => {
-      setTimeout(() => {
-        const elements = document.querySelectorAll(
-          ".stats-card, .contribution-day, .month-label, .weekday-label, .legend-item, .color-swatch"
-        );
-        elements.forEach((el) => {
-          el.classList.add("animate-in");
-        });
-      }, 50);
-    });
+    averageContributions.value =
+      currentYearDays.reduce((a, b) => a + b.contributionCount, 0) / 365;
   } catch (err) {
-    console.error("Failed to fetch GitHub contributions:", err);
+    console.error("Failed:", err);
+    isError.value = true;
   }
 };
 
-const showContributionCount = (count: number, date: string) => {
-  hoveredContributionCount.value = count;
-  hoveredDate.value = date;
-};
-
-const hideContributionCount = () => {
-  hoveredContributionCount.value = null;
-};
-
-onMounted(() => getGitContribution());
+onMounted(getGitContribution);
 </script>
 
 <style scoped>
